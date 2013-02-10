@@ -1,7 +1,8 @@
-title=Primus sucks!
-date=2010-08-09
-tags=music, primus
-%%%%%%%%
+---
+title: Primus sucks!
+date: 2010-08-09
+tags: music, primus
+---
 
 Last night I went to my first (but hopefully not last!) [Primus][1]
 show. The show itself was fantastic, Les Claypool is a fantastically

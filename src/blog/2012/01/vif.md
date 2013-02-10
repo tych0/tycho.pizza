@@ -1,7 +1,8 @@
-title=Viridian/Ampache local control
-date=2012-01-23
-tags=free code, python, ampache
-%%%%%%%%%%
+---
+title: Viridian/Ampache local control
+date: 2012-01-23
+tags: free code, python, ampache
+---
 
 Recently at work I've been using [Viridan][1] to listen to music at work. It
 has its warts, but generally works pretty well. There's even an XMLRPC server

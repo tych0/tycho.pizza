@@ -1,7 +1,8 @@
-title=Cycling in Madison
-date=2010-06-16
-tags=cycling, madison, cool websites
-%%%%%%%
+---
+title: Cycling in Madison
+date: 2010-06-16
+tags: cycling, madison, cool websites
+---
 Now that I have this fancy blog, I might as well use it :-).
 
 For my birthday I was given a fancy bike computer (Garmin Edge 705, if you're

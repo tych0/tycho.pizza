@@ -1,7 +1,8 @@
-title=Photos from my Colorado adventure
-date=2012-01-11
-tags=colorado, skiing, photos
-%%%%%%%%%%
+---
+title: Photos from my Colorado adventure
+date: 2012-01-11
+tags: colorado, skiing, photos
+---
 
 Hello! I just completed another successful two and a half weeks
 touring the Colorado mountains. Although the snow was not great

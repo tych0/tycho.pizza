@@ -1,7 +1,8 @@
-title=Panoramic off of the capitol
-date=2010-06-21
-tags=madison, panorama
-%%%%%%%
+---
+title: Panoramic off of the capitol
+date: 2010-06-21
+tags: madison, panorama
+---
 
 This weekend I went up to the observatory deck on the capitol, which
 was the first time I'd ever done that. I shot a panoramic with the

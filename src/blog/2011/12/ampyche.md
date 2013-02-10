@@ -1,7 +1,8 @@
-title=Python "binding" for Ampache
-date=2011-12-19
-tags=python, ampache, free code
-%%%%%%%%%%
+---
+title: Python "binding" for Ampache
+date: 2011-12-19
+tags: python, ampache, free code
+---
 Ahoy!
 
 Just writing a quick post to pimp my new [Ampache][1] "bindings",

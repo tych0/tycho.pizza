@@ -1,7 +1,8 @@
-title=A Tiling Window Manger
-date=2011-05-27
-tags=wm, qtile, python
-%%%%%%%%%%
+---
+title: A Tiling Window Manger
+date: 2011-05-27
+tags: wm, qtile, python
+---
 
 Ahoy! At the recommendation of one of my friends, I've recently begun
 using a tiling window manger. Although he recommended [xmonad][1], I

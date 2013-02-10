@@ -1,7 +1,8 @@
-title=Gmail, Conky, and libnotify
-date=2010-08-01
-tags=gmail, conky, libnotify, python, free code
-%%%%%%
+---
+title: Gmail, Conky, and libnotify
+date: 2010-08-01
+tags: gmail, conky, libnotify, python, free code
+---
 
 Several years ago I discovered a fantastic system monitor named
 [conky][1]. Over the years I've been tweaking my .conkyrc and it has

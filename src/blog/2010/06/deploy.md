@@ -1,7 +1,8 @@
-title=First public deployment of GTFO!
-date=2010-06-15
-tags=meta, gtfo
-%%%%%%%
+---
+title: First public deployment of GTFO!
+date: 2010-06-15
+tags: meta, gtfo
+---
 
 Ahoy! This is the first public deployment of the new web framework "GTFO". I'll
 explain the name, design rationale, and other such things in a later post

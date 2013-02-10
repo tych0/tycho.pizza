@@ -1,7 +1,8 @@
-title=The Tour de France!
-tags=cycling, tour
-date=2010-07-03
-%%%%%%%%%
+---
+title: The Tour de France!
+tags: cycling, tour
+date: 2010-07-03
+---
 
 The Tour de France started today! As I write this the prologue is
 going on (although none of the big names have gone yet, so we don't

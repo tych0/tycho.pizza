@@ -1,7 +1,8 @@
-title=Non-POD to variadic functions
-date=2010-06-18
-tags=gcc, cpp
-%%%%%
+---
+title: Non-POD to variadic functions
+date: 2010-06-18
+tags: gcc, cpp
+---
 
 Recently I ran into some strange behavior in gcc that caused some
 minor confusion for me for a few hours until I figured out exactly

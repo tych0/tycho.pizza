@@ -1,7 +1,8 @@
-title=Mutt Sidebar Configuration
-date=2011-10-26
-tags=ncurses, mutt
-%%%%%%%%%%
+---
+title: Mutt Sidebar Configuration
+date: 2011-10-26
+tags: ncurses, mutt
+---
 
 I am a [mutt][1] user (in fact, I'm a [mutt-sidebar][3] user). That
 means several things, one of which is that I spend a nonzero amount of

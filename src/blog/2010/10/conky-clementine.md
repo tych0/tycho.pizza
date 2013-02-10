@@ -1,7 +1,8 @@
-title=Rendering your current Clementine track in Conky
-date=2010-10-23
-tags=conky, clementine, script
-%%%%%%%
+---
+title: Rendering your current Clementine track in Conky
+date: 2010-10-23
+tags: conky, clementine, script
+---
 
 I've been using [Clementine][1] as a replacement for Amarok for the last
 few months (it's fairly feature complete, and you don't have to have

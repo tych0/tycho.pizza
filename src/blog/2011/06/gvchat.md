@@ -1,7 +1,8 @@
-title=Google Voice ncurses interface
-date=2011-06-14
-tags=python, ncurses, sms
-%%%%%%%%%%
+---
+title: Google Voice ncurses interface
+date: 2011-06-14
+tags: python, ncurses, sms
+---
 
 For a while I have been using a Google Voice number as my primary
 texting number since it doesn't cost any money and has the additional

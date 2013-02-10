@@ -1,7 +1,8 @@
-title=Bug in GTFO
-date=2010-09-12
-tags=gtfo, bug, meta
-%%%%%
+---
+title: Bug in GTFO
+date: 2010-09-12
+tags: gtfo, bug, meta
+---
 
 Uh oh! If you've been browsing this site for the last few days, you've
 probably noticed some strange behavior. For some reason I'm getting a

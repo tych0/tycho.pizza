@@ -1,7 +1,8 @@
-title=Gmail Atom Feed Authentication
-date=2010-08-03
-tags=gmail, python, free code
-%%%%%%%%%%
+---
+title: Gmail Atom Feed Authentication
+date: 2010-08-03
+tags: gmail, python, free code
+---
 
 Perhaps the most complicated part of the application in my [recent
 post][1] was the authentication with Gmail. Although my final method

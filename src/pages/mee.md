@@ -1,6 +1,5 @@
 ---
-title=How to reformat your cheap MP3 player on Linux
-date=2008-07-19
+title: How to reformat your cheap MP3 player on Linux
 ---
 
 I own a MEElectronics MiniMee 2GB MP3 player; I've had this player for quite a
@@ -46,5 +45,7 @@ only work with FAT16 partitions (I tried FAT12 and FAT32 for grins and it would
 tell me how much data was on the partitions, but it wouldn't play any songs).
 Once you're done with the formatting (this should only take a few seconds on
 the MiniMee), you can re-transfer your songs and all should be happy.
+
+Posted on 2008-07-19
 
  [1]: http://packages.ubuntu.com/hardy/dosfstools

@@ -1,7 +1,8 @@
-title=Qtile packages for Ubuntu 12.10 (Quantal Quetzal)
-date=2012-10-19
-tags=free code, python, qtile, ppa, ubuntu
-%%%%%%%%%%
+---
+title: Qtile packages for Ubuntu 12.10 (Quantal Quetzal)
+date: 2012-10-19
+tags: free code, python, qtile, ppa, ubuntu
+---
 
 Ahoy! I have put up new packages for qtile for 12.10, so I thought I'd
 write a bit about what's actually in the packages. First, they're

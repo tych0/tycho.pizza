@@ -1,7 +1,8 @@
-title=The UK
-date=2010-08-15
-tags=travel, photos, panorama
-%%%%%%%%
+---
+title: The UK
+date: 2010-08-15
+tags: travel, photos, panorama
+---
 
 Recently (July 9-23), I spent some time in the UK. I've been a bit
 busy since then, and have not had time to write up my activities and

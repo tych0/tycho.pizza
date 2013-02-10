@@ -1,7 +1,8 @@
-title=Spam on my blog!
-tags=spam, meta
-date=2010-06-28
-%%%%%%%%%
+---
+title: Spam on my blog!
+tags: spam, meta
+date: 2010-06-28
+---
 
 In an interesting twist, you may have noticed that my blog received
 some spam posts the other day. This seems pretty amazing to me, since

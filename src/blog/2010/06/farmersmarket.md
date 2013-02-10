@@ -1,7 +1,8 @@
-title=Dane County Farmer's Market
-date=2010-06-19
-tags=madison, food
-%%%%%%%%%
+---
+title: Dane County Farmer's Market
+date: 2010-06-19
+tags: madison, food
+---
 
 One of the things I like best about living in downtown Madison is the
 [farmer's market][1]. It's very handy to be able to up, walk a few

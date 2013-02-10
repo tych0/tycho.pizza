@@ -1,7 +1,8 @@
-title=The spam continues
-tags=gtfo, meta, spam
-date=2010-07-26
-%%%%%%%%%%%
+---
+title: The spam continues
+tags: gtfo, meta, spam
+date: 2010-07-26
+---
 
 Unfortunately, the spam on my blog appears to have continued. Thus, I've
 implemented an anti-spam procedure in GTFO: the dreaded [CAPTCHA][1]. In the

@@ -1,7 +1,8 @@
-title=Installing Qtile on Ubuntu 11.10 (Oneiric Ocelot)
-date=2012-01-26
-tags=free code, python, qtile
-%%%%%%%%%%
+---
+title: Installing Qtile on Ubuntu 11.10 (Oneiric Ocelot)
+date: 2012-01-26
+tags: free code, python, qtile
+---
 
 Recently, there has been some discussion on [qtile-dev][1] about
 installing the latest and greatest version of qtile. Unfortunately,

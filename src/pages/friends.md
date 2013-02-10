@@ -1,6 +1,5 @@
 ---
-title=People I know on the internet
-date=2010-06-19
+title: People I know on the internet
 ---
 
 If you're a friend of mine and you'd like help starting a webpage, or your page

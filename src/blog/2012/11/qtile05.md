@@ -1,7 +1,8 @@
-title=Qtile 0.5 released!
-date=2012-11-11
-tags=free code, python, qtile
-%%%%%%%%%%
+---
+title: Qtile 0.5 released!
+date: 2012-11-11
+tags: free code, python, qtile
+---
 
 Hello! Today, I'm proud to announce the release of [Qtile 0.5][1]. A
 wildly incomplete changelog is available [here][2]. Qtile 0.5 comes
