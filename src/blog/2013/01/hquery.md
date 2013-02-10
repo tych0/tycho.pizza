@@ -1,7 +1,8 @@
-title=Hquery, an HTML5 tree rewriting tool
-date=2013-01-29
-tags=free code, haskell, html
-%%%%%%%%%%
+---
+title: Hquery, an HTML5 tree rewriting tool
+date: 2013-01-29
+tags: free code, haskell, html
+---
 
 Recently I began rewriting the framework that powers this blog
 ([gtfo][1]) in haskell. Among other things, I needed a good tree
