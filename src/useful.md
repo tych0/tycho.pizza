@@ -1,5 +1,5 @@
 ---
-title=Free Software I've Written
+title: Free Software I've Written
 ---
 
 Believe it or not, I'm occasionally productive. For a while I was a
