@@ -2,18 +2,12 @@
 title: Music
 ---
 
-While I have a "live performance" section in my hobbies page, music seems to
-occupy a large enough fraction of my life that it deserves its own page (hey,
-computing has 'useful' and if you know anything about me, you know that I spend
-a fair bit of time doing them both ;-). I hope to some day soon to have music
-that I've created up here (and indeed, maybe a short writeup of all of the
-instruments and groups I've played in and with), but for now it'll simply have
-to be my list of bands.
-
-Here's a list of the bands I've seen live. They're listed here **in no
-particular order**. (N) indicates I've been to see a band N times. Also, I tend
-not to list local shows here. In general, these are the bands who are on the
-"[bucket list][2]", so to speak.
+Here's a list of the bands I've seen live, and a list of ones I'm interested in
+seeing live. They're listed here **in no particular order**. (N) indicates I've
+been to see a band N times. Also, I tend not to list local shows here (or e.g.
+any one of the dozens of bands that play at larger festivals I've attended such
+as Ozzfest). In general, these are the bands who are on the "[bucket list][2]",
+so to speak.
 
 1.  Meshuggah (4)
 2.  Primus (3)
@@ -72,10 +66,13 @@ not to list local shows here. In general, these are the bands who are on the
 52. Jack Johnson
 53. Mason Jennings
 
-Here's a list of things I would like to see, but haven't yet. Some of them may never happen again, but I've still got them on my wish list ;-) 
+Here's a list of things I would like to see, but haven't yet. Some of them may
+never happen again, but I've still got them on my wish list ;-)
 
 1.  Everlast
 1.  Nirvana
+1.  Puscifer/Tool/Maynard
+1.  Eminem
 3.  Rage Against the Machine
 4.  Nine Inch Nails
 5.  Jason Mraz

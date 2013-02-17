@@ -1,13 +1,23 @@
 ---
-title: Free Software I've Written
+title=Free Software I've Written
 ---
 
-Believe it or not, I'm occasionally productive. I am currently a
-[graduate student][1], and sometimes I publish papers. I've also
-written some software. I have submitted patches to several open source
-projects including [python][15] and [Amarok][17], among several
-others. I have a [github][14] account where I publish most of my
-own projects. In addition to that code, I've written:
+Believe it or not, I'm occasionally productive. For a while I was a
+[graduate student][1], I published several papers. I am currently the
+maintainer of [Qtile][18], a tiling window manager for X written in
+python. I have a [github][14] account where I publish most of my own
+recent projects:
+
+  * [gvchat][20], an ncurses interface to Google Voice for sending
+    SMSes
+  * [gtfo][19], the original python framework that powered this blog
+  * [hquery][21], an HTML5 tree rewriting engine
+  * [haggis][22], a rewrite of gtfo to a static site generator in
+    haskell. This is the primary client of hquery, and is still under
+    development.
+
+<!-- If you're reading this, you're really bored, so here's some old
+unmaintained broken code which may be useful to someone someday:
 
 *   a php script to do [photo galleries][6]
 *   tcrond - a version of cron with [millisecond resolution][7]
@@ -18,6 +28,7 @@ own projects. In addition to that code, I've written:
     on supercomputers (tested on ISU's BlueGene/L) is [here][9].
 *   A [script][13] to automatically check Gmail and show the results
     and conky, which also displays notifications using libnotify.
+-->
 
  [1]: http://pages.cs.wisc.edu/~tycho
  [2]: /pages/mee
@@ -35,3 +46,8 @@ own projects. In addition to that code, I've written:
  [14]: https://github.com/tych0
  [15]: http://python.org
  [17]: http://amarok.kde.org/
+ [18]: http://qtile.org
+ [19]: http://github.com/tych0/gtfo
+ [20]: http://github.com/tych0/gvchat
+ [21]: http://github.com/tych0/hquery
+ [22]: http://github.com/tych0/haggis
