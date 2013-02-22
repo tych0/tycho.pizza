@@ -8,7 +8,7 @@ serve: out
 deploy: out
 	rsync --progress -rltz ./out/ tycho.ws:/home/tychoa/beta.tycho.ws/
 
-out: $(HAGGIS) templates/*.html
+out: $(HAGGIS) haggis.conf src templates/*.html
 	$(HAGGIS) --input . --output out
 
 clean:
