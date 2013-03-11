@@ -1,3 +1,4 @@
+<div>
 <div class="page well">
   <h2 class="title"></h2>
   <p class="byline">
@@ -7,12 +8,53 @@
   <div class="meta">
     <p class="links">
       <span class="tags">
-        &nbsp;&bull;&nbsp;&nbsp;Tags: <a href="#" class="tag"></a>
+        Tags: <a href="#" class="tag"></a>
       </span>
     </p>
   </div>
-  <div class="comment">
-    <p><a href="#" class="name"></a> on <span class="datetime"></span></p>
-    <div class="payload well"></div>
+</div>
+<div class="well">
+<h3>Comments</h3>
+  <div class="comment well">
+    <p><a href="#" class="name"></a> at <span class="datetime"></span>:</p>
+    <div class="payload"></div>
   </div>
+  <div class="well">
+    <form method="post" action="/comments.php" class="form-horizontal">
+      <fieldset>
+        <legend>Post a comment</legend>
+        <div class="control-group">
+          <label class="control-label" for="name">Name (required):</label>
+          <div class="controls">
+            <input id="name" type="text">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">Email:</label>
+          <div class="controls">
+            <input id="email" type="text">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="url">URL:</label>
+          <div class="controls">
+            <input id="url" type="text">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="orange">Type "orange" (without quotes) here:</label>
+          <div class="controls">
+            <input id="orange" type="text">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="payload">Payload:</label>
+          <div class="controls">
+            <textarea id="payload" class="input-xxlarge" rows="4"></textarea>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
 </div>
