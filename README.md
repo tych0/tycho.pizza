@@ -10,3 +10,8 @@ site. These particular templates are twitter bootstrap based.
 `src/` is the page source.
 
 License: MIT
+
+# TODO
+
+  * include bootstrap-alert.js
+  * actually regenerate blog on comment
