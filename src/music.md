@@ -9,8 +9,9 @@ any one of the dozens of bands that play at larger festivals I've attended such
 as Ozzfest). In general, these are the bands who are on the "[bucket list][2]",
 so to speak.
 
-1.  Meshuggah (4)
+1.  Meshuggah (7)
 2.  Primus (3)
+1.  Animals as Leaders (3)
 2.  Coldplay
 3.  Godsmack (2)
 4.  KoRn (5)
@@ -29,6 +30,7 @@ so to speak.
 17. GWAR
 18. Puddle of Mudd
 19. Aerosmith
+19. Intronaut (3)
 20. Guns 'n Roses
 21. Motograter
 22. Deftones (3)
