@@ -1,5 +1,5 @@
 <?
-  $db = new SQLite3("gtfo.db");
+  $db = new SQLite3("blog.db");
   $stmt = $db->prepare('insert into "comments"
     ("slug", "name", "url", "email", "payload") values
     (:slug, :name, :url, :email, :payload)');
@@ -31,4 +31,6 @@
   $stmt->execute();
   $stmt->close();
   $db->close();
+
+  touch("/tmp/genblog");
 ?>
