@@ -16,20 +16,6 @@ recent projects:
     haskell. This is the primary client of hquery, and is still under
     development.
 
-<!-- If you're reading this, you're really bored, so here's some old
-unmaintained broken code which may be useful to someone someday:
-
-*   a php script to do [photo galleries][6]
-*   tcrond - a version of cron with [millisecond resolution][7]
-*   [todobot][8], an online todo list manager (this is still a work in
-    progress... at some point I intend to add an API and write an Android widget
-    for it, since I use it on a daily basis).
-*   Some code I wrote to sort huge amounts of data (on the order of terabytes)
-    on supercomputers (tested on ISU's BlueGene/L) is [here][9].
-*   A [script][13] to automatically check Gmail and show the results
-    and conky, which also displays notifications using libnotify.
--->
-
  [1]: http://pages.cs.wisc.edu/~tycho
  [2]: /pages/mee
  [3]: /pages/pymedia

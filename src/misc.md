@@ -1,6 +1,7 @@
 ---
 title: Miscellaneous
 ---
+
 ### Contact
 
 I can be reached at either tycho@FOURIERtycho.ws without the [genius][1].
