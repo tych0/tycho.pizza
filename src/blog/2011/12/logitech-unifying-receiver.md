@@ -1,7 +1,7 @@
 ---
-title=Unifying Logitech Devices on Linux
-date=2011-12-12
-tags=bugfix
+title: Unifying Logitech Devices on Linux
+date: 2011-12-12
+tags: bugfix
 ---
 
 I was recently given a [Logitech K800 keyboard][1] and a [Logitech
