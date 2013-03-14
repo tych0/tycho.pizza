@@ -1,7 +1,9 @@
+---
 title=Unifying Logitech Devices on Linux
 date=2011-12-12
 tags=bugfix
-%%%%%%%%%%
+---
+
 I was recently given a [Logitech K800 keyboard][1] and a [Logitech
 Performance Mouse MX][2], both of which are great devices. I picked
 them because wireless-ness is useful for ergonomic reasons, and they
