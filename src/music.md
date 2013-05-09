@@ -28,6 +28,8 @@ so to speak.
 15. Creed
 16. Muse
 17. GWAR
+17. Shinedown
+17. Bush
 18. Puddle of Mudd
 19. Aerosmith
 19. Intronaut (3)
