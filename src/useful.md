@@ -14,7 +14,8 @@ recent projects:
   * [hquery][21], an HTML5 tree rewriting engine
   * [haggis][22], a rewrite of gtfo to a static site generator in
     haskell. This is the primary client of hquery, and is still under
-    development.
+    development (however, it powers this blog, so it might work reasonably
+    well...).
 
  [1]: http://pages.cs.wisc.edu/~tycho
  [2]: /pages/mee
