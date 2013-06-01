@@ -13,6 +13,7 @@ so to speak.
 2.  Primus (3)
 1.  Animals as Leaders (3)
 2.  Coldplay
+2.  The Rolling Stones
 3.  Godsmack (2)
 4.  KoRn (5)
 5.  Disturbed (3)
