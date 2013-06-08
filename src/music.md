@@ -59,7 +59,7 @@ so to speak.
 40. Slayer
 41. Killswitch Engage
 42. Cradle of Filth
-43. Lamb of God (4)
+43. Lamb of God (5)
 44. Gnarls Barkley
 45. Red Hot Chilli Peppers
 46. Evanescence (2)
