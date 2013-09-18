@@ -9,68 +9,68 @@ any one of the dozens of bands that play at larger festivals I've attended such
 as Ozzfest). In general, these are the bands who are on the "[bucket list][2]",
 so to speak.
 
-1.  Meshuggah (7)
-2.  Primus (3)
-1.  Animals as Leaders (3)
-2.  Mumford and Sons
-2.  Coldplay
-2.  The Rolling Stones
-3.  Godsmack (2)
-4.  KoRn (5)
-5.  Disturbed (3)
-6.  Stone Temple Pilots
-7.  Pearl Jam
-8.  System of a Down
-9.  Seether
-10. Mudvayne (2)
-11. Hurt (6)
-12. MushroomHead
-13. Slipknot (3)
-14. Marilyn Manson (2)
-15. Creed
-16. Muse
-17. GWAR
-17. Shinedown
-17. Bush
-18. Puddle of Mudd
-19. Aerosmith
-19. Intronaut (3)
-20. Guns 'n Roses
-21. Motograter
-22. Deftones (3)
-23. Three Days Grace (2)
-24. Three Doors Down
-25. Linkin Park
-26. Hed P.E.
-26. Train
-27. Sevendust
-28. Gojira (2)
-28. Cake
-29. Incubus
-30. Hoobastank
-31. Drowning Pool
-32. Big Bad Voodoo Daddy
-33. P.O.D.
-34. Staind
-35. Ozzy Osbourne (3)
-36. Areosmith
-37. Adema
-38. Chevelle
-39. Flaw
-40. Slayer
-41. Killswitch Engage
-42. Cradle of Filth
-43. Lamb of God (5)
-44. Gnarls Barkley
-45. Red Hot Chilli Peppers
-46. Evanescence (2)
-47. Cold
-48. Kid Rock
-49. Stone Sour
-50. Seven Mary Three
-51. Black Label Society
-52. Jack Johnson
-53. Mason Jennings
+#. Meshuggah (7)
+#. Adema
+#. Aerosmith
+#. Animals as Leaders (3)
+#. Areosmith
+#. Big Bad Voodoo Daddy
+#. Black Label Society
+#. Bush
+#. Cake
+#. Chevelle
+#. Cold
+#. Coldplay
+#. Cradle of Filth
+#. Creed
+#. Deftones (3)
+#. Disturbed (3)
+#. Drowning Pool
+#. Evanescence (2)
+#. Flaw
+#. GWAR
+#. Gnarls Barkley
+#. Godsmack (2)
+#. Gojira (2)
+#. Guns 'n Roses
+#. Hed P.E.
+#. Hoobastank
+#. Hurt (6)
+#. Incubus
+#. Intronaut (3)
+#. Jack Johnson
+#. Kid Rock
+#. Killswitch Engage
+#. KoRn (5)
+#. Lamb of God (5)
+#. Linkin Park
+#. Marilyn Manson (2)
+#. Mason Jennings
+#. Motograter
+#. Mudvayne (2)
+#. Mumford and Sons
+#. Muse
+#. MushroomHead
+#. Ozzy Osbourne (3)
+#. P.O.D.
+#. Pearl Jam
+#. Primus (3)
+#. Puddle of Mudd
+#. Red Hot Chilli Peppers
+#. Seether
+#. Seven Mary Three
+#. Sevendust
+#. Shinedown
+#. Slayer
+#. Slipknot (3)
+#. Staind
+#. Stone Sour
+#. Stone Temple Pilots
+#. System of a Down
+#. The Rolling Stones
+#. Three Days Grace (2)
+#. Three Doors Down
+#. Train
 
 Here's a list of things I would like to see, but haven't yet. Some of them may
 never happen again, but I've still got them on my wish list ;-)
