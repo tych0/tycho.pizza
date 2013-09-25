@@ -16,6 +16,8 @@ website: [riferecording.com][4]
 [Tristan Ravitch][1] is a graduate student at UW that I became good friends
 with.
 
+[Aditya Thakur][7] is another one of my close friends from graduate school.
+
 [Victoria Richardson][2] is an accountant in the Madison area.
 
 [Valerie Merchant][5] is a newly minted graphic designer.
@@ -30,3 +32,4 @@ friend of mine since I moved to Madison.
  [4]: http://riferecording.com
  [5]: http://cargocollective.com/vmerch
  [6]: http://net.doit.wisc.edu/~plonka/
+ [7]: http://pages.cs.wisc.edu/~adi/
