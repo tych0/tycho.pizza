@@ -3,11 +3,10 @@ title: Music
 ---
 
 Here's a list of the bands I've seen live, and a list of ones I'm interested in
-seeing live. They're listed here **in no particular order**. (N) indicates I've
-been to see a band N times. Also, I tend not to list local shows here (or e.g.
-any one of the dozens of bands that play at larger festivals I've attended such
-as Ozzfest). In general, these are the bands who are on the "[bucket list][2]",
-so to speak.
+seeing live. (N) indicates I've been to see a band N times. Also, I tend not to
+list local shows here (or e.g. any one of the dozens of bands that play at
+larger festivals I've attended such as Ozzfest). In general, these are the
+bands who are on the "[bucket list][2]", so to speak.
 
 #. Meshuggah (7)
 #. Adema
