@@ -51,11 +51,13 @@ so to speak.
 #. Mumford and Sons
 #. Muse
 #. MushroomHead
+#. Nine Inch Nails
 #. Ozzy Osbourne (3)
 #. P.O.D.
 #. Pearl Jam
 #. Primus (3)
 #. Puddle of Mudd
+#. Reaping Asmodeia (lots)
 #. Red Hot Chilli Peppers
 #. Seether
 #. Seven Mary Three
@@ -75,19 +77,18 @@ so to speak.
 Here's a list of things I would like to see, but haven't yet. Some of them may
 never happen again, but I've still got them on my wish list ;-)
 
-1.  Everlast
-1.  Nirvana
-1.  Puscifer/Tool/Maynard
-1.  Eminem
-3.  Rage Against the Machine
-4.  Nine Inch Nails
-5.  Jason Mraz
-5.  Gavin DeGraw
-5.  Da Vinci's Notebook
-6.  Metallica
-7.  Bloodbath
-8.  Soulfly
-9.  [Wacken Open Air][1] festival
+#. Everlast
+#. Nirvana
+#. Puscifer/Tool/Maynard
+#. Eminem
+#. Rage Against the Machine
+#. Jason Mraz
+#. Gavin DeGraw
+#. Da Vinci's Notebook
+#. Metallica
+#. Bloodbath
+#. Soulfly
+#. [Wacken Open Air][1] festival
 
  [1]: http://en.wikipedia.org/wiki/Wacken_Open_Air
  [2]: http://en.wikipedia.org/wiki/Kick_the_bucket
