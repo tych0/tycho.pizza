@@ -18,6 +18,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Bush
 #. Cake
 #. Chevelle
+#. Clutch
 #. Cold
 #. Coldplay
 #. Cradle of Filth
@@ -45,6 +46,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Linkin Park
 #. Marilyn Manson (2)
 #. Mason Jennings
+#. MGMT
 #. Motograter
 #. Mudvayne (2)
 #. Mumford and Sons
