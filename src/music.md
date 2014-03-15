@@ -11,7 +11,8 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Meshuggah (7)
 #. Adema
 #. Aerosmith
-#. Animals as Leaders (3)
+#. After the Burial
+#. Animals as Leaders (4)
 #. Areosmith
 #. Big Bad Voodoo Daddy
 #. Black Label Society
