@@ -1,6 +1,6 @@
 ---
 title: Ubuntu 14.04 Trusty Tahr packages for Qtile
-date: 2013-09-07
+date: 2014-03-29
 tags: qtile, python, ubuntu
 ---
 
