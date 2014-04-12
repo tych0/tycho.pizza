@@ -19,6 +19,7 @@ recent projects:
   * [password][23], a stateless passwowrd manager.
 
  [1]: http://pages.cs.wisc.edu/~tycho
+ [14]: http://github.com/tych0
  [18]: http://qtile.org
  [19]: http://github.com/tych0/gtfo
  [20]: http://github.com/tych0/gvchat
