@@ -71,6 +71,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Stone Sour
 #. Stone Temple Pilots
 #. System of a Down
+#. Tantric
 #. The Rolling Stones
 #. Three Days Grace (2)
 #. Three Doors Down
