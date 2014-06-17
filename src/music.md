@@ -8,12 +8,13 @@ list local shows here (or e.g. any one of the dozens of bands that play at
 larger festivals I've attended such as Ozzfest). In general, these are the
 bands who are on the "[bucket list][2]", so to speak.
 
-#. Meshuggah (7)
+#. Meshuggah (8)
 #. Adema
 #. Aerosmith
 #. After the Burial
 #. Animals as Leaders (4)
 #. Areosmith
+#. Between the Buried and Me
 #. Big Bad Voodoo Daddy
 #. Black Label Society
 #. Bush
