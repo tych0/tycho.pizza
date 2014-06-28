@@ -14,4 +14,3 @@ License: MIT
 # TODO
 
   * include bootstrap-alert.js
-  * actually regenerate blog on comment

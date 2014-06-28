@@ -83,7 +83,9 @@ never happen again, but I've still got them on my wish list ;-)
 
 #. Everlast
 #. Nirvana
-#. Puscifer/Tool/Maynard
+#. Puscifer/Tool/Maynard/A Perfect Circle
+#. Guster
+#. Passenger
 #. Eminem
 #. Rage Against the Machine
 #. Jason Mraz
