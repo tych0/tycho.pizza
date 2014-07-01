@@ -20,6 +20,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Bush
 #. Cake
 #. Chevelle
+#. Christina Perri
 #. Clutch
 #. Cold
 #. Coldplay
