@@ -45,7 +45,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Jack Johnson
 #. Kid Rock
 #. Killswitch Engage
-#. KoRn (5)
+#. KoЯn (5)
 #. Lamb of God (5)
 #. Linkin Park
 #. Marilyn Manson (2)
