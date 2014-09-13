@@ -1,6 +1,6 @@
 ---
 title: Qtile's crazy 0.9.0 changes have landed
-date: 2014-08-18
+date: 2014-09-13
 tags: qtile, python
 ---
 
