@@ -61,6 +61,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. P.O.D.
 #. Passenger
 #. Pearl Jam
+#. Periphery
 #. Primus (3)
 #. Puddle of Mudd
 #. Reaping Asmodeia (lots)
