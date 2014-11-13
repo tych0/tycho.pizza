@@ -12,6 +12,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Adema
 #. Aerosmith
 #. After the Burial
+#. Alice Cooper
 #. Animals as Leaders (4)
 #. Areosmith
 #. Between the Buried and Me
@@ -51,6 +52,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Marilyn Manson (2)
 #. Mason Jennings
 #. MGMT
+#. Mötley Crüe
 #. Motograter
 #. Mudvayne (2)
 #. Mumford and Sons
