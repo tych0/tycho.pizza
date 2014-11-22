@@ -38,6 +38,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Godsmack (2)
 #. Gojira (2)
 #. Guns 'n Roses
+#. Hardcore Crayons
 #. Hed P.E.
 #. Hoobastank
 #. Hurt (6)
@@ -88,7 +89,6 @@ bands who are on the "[bucket list][2]", so to speak.
 Here's a list of things I would like to see, but haven't yet. Some of them may
 never happen again, but I've still got them on my wish list ;-)
 
-#. Hardcore Crayons
 #. Everlast
 #. Nirvana
 #. Puscifer/Tool/Maynard/A Perfect Circle
