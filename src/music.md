@@ -87,11 +87,13 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Train
 
 Here's a list of things I would like to see, but haven't yet. Some of them may
-never happen again, but I've still got them on my wish list ;-)
+never happen again, but I've still got them on my wish list :-)
 
 #. Everlast
 #. Nirvana
+#. Alice in Chains
 #. Puscifer/Tool/Maynard/A Perfect Circle
+#. Greg Laswell
 #. Guster
 #. Rage Against the Machine
 #. Jason Mraz
