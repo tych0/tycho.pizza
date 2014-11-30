@@ -28,7 +28,7 @@ Since the work on container checkpoint/restore is so young, not all container
 configurations are supported. In particular, I had to add the following to my
 config:
 
-    cat | sudo tee -a /var/lib/lxc/u1/config << EOF
+    cat << EOF | sudo tee -a /var/lib/lxc/u1/config
     # hax for criu
     lxc.console = none
     lxc.tty = 0
