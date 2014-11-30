@@ -16,9 +16,10 @@ website: [riferecording.com][4]
 [Tristan Ravitch][1] is a graduate student at UW that I became good friends
 with.
 
-[Aditya Thakur][7] is another one of my close friends from graduate school.
+[Aditya Thakur][7] is another one of my close friends from graduate school, who
+is now at [cs.berkeley.edu][[8].
 
-[Victoria Richardson][2] is an accountant in the Madison area.
+[Victoria Thomas][2] is an accountant in the Madison area.
 
 [Valerie Merchant][5] is a newly minted graphic designer.
 
@@ -26,10 +27,14 @@ with.
 prospective graduate student weekend. We hit it off and he has been a good
 friend of mine since I moved to Madison.
 
+[Cindy Rubio-González][9] is a professor at UC-Davis who I met while in
+graduate school.
+
  [1]: http://nochair.net
  [2]: http://accountabilityaccounting.com/
  [3]: http://dave.tycho.ws/Outdoors
  [4]: http://riferecording.com
- [5]: http://cargocollective.com/vmerch
+ [5]: http://vmerch.wordpress.com/
  [6]: http://net.doit.wisc.edu/~plonka/
  [7]: http://pages.cs.wisc.edu/~adi/
+ [8]: http://www.cs.berkeley.edu/~athakur/
