@@ -14,7 +14,6 @@ bands who are on the "[bucket list][2]", so to speak.
 #. After the Burial
 #. Alice Cooper
 #. Animals as Leaders (4)
-#. Areosmith
 #. Between the Buried and Me
 #. Big Bad Voodoo Daddy
 #. Black Label Society
