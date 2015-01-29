@@ -64,7 +64,7 @@ tools in the works for this, but for now we can just use a cheesy shell script:
     checkpoint_dir=/tmp/checkpoint
 
     do_rsync() {
-      rsync -rltzh --progress --devices --rsync-path="sudo rsync" $1 $host:$1
+      rsync -aAXHltzh --progress --numeric-ids --devices --rsync-path="sudo rsync" $1 $host:$1
     }
 
     # we assume the same lxcpath on both hosts, that is bad.
