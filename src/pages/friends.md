@@ -17,7 +17,7 @@ website: [riferecording.com][4]
 with.
 
 [Aditya Thakur][7] is another one of my close friends from graduate school, who
-is now at [cs.berkeley.edu][[8].
+is now at [cs.berkeley.edu][8].
 
 [Victoria Thomas][2] is an accountant in the Madison area.
 
@@ -38,3 +38,4 @@ graduate school.
  [6]: http://net.doit.wisc.edu/~plonka/
  [7]: http://pages.cs.wisc.edu/~adi/
  [8]: http://www.cs.berkeley.edu/~athakur/
+ [9]: http://web.cs.ucdavis.edu/~rubio/
