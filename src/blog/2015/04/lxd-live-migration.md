@@ -21,7 +21,8 @@ Since systemd re-mounts the rootfs as `MS_SHARED`, lots of things
 automatically become shared mounts, which confuses CRIU. There are
 [several](http://lists.openvz.org/pipermail/criu/2015-April/019585.html)
 [mailing
-list](http://lists.openvz.org/pipermail/criu/2015-March/019299.html) threads
+list](http://lists.openvz.org/pipermail/criu/2015-March/019299.html)
+[threads](http://lists.openvz.org/pipermail/criu/2015-April/019652.html)
 about ongoing work with respect to shared mounts in CRIU and I expect
 something to be merged that will resolve the situation shortly, but for
 now your host machine needs to be a non-systemd host (i.e. trusty or
@@ -31,7 +32,7 @@ You'll need to install the daily versions of liblxc and lxd from their
 respective PPAs on each host:
 
     sudo apt-add-repository -y ppa:ubuntu-lxc/daily
-    sudo apt-add-repository -y ppa:ubuntu-lxc/lxd-daily
+    sudo apt-add-repository -y ppa:ubuntu-lxc/lxd-git-master
     sudo apt-get update
     sudo apt-get install lxd
 
@@ -42,7 +43,8 @@ Also, you'll need to uninstall `lxcfs` on both hosts:
 `liblxc` currently doesn't support migrating the mount configuration that
 lxcfs uses, although there is [some
 work](http://lists.openvz.org/pipermail/criu/2015-March/019530.html) on
-that as well.
+that as well. The overmounting issue has been fixed in lxcfs, so I expect
+to land some patches in liblxc soon that will make lxcfs work.
 
 Next, you'll want to set a password for your new lxd instance:
 
