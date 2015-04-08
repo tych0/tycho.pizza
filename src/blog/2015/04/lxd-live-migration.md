@@ -12,7 +12,7 @@ Migration in LXD today passes the "Doom demo" test, i.e. it works well
 enough to reproduce the [LXD announcement
 demo](https://www.youtube.com/watch?v=a9T2gcnQg2k&t=1189) under certain
 conditions, which I'll cover below. There is still a lot of ongoing work
-to make CRIU (the underlying migration technology) work with all these
+to make [CRIU](http://criu.org) (the underlying migration technology) work with all these
 configurations, so support will eventually arrive for everything. For
 now, though, you'll need to use the configuration I describe below.
 
@@ -112,7 +112,7 @@ migration attempts should be available in
 respective host where the dump or restore took place. If you aren't
 successful in migrating things (or parsing the dump/restore log), feel
 free to mail
-[`lxc-users`](https://lists.linuxcontainers.org/listinfo/lxc-users), and
+[lxc-users](https://lists.linuxcontainers.org/listinfo/lxc-users), and
 I can help you debug what went wrong.
 
 Happy hacking!
