@@ -87,12 +87,12 @@ And apply the profile to your container:
 
     lxc config profile apply migratee migratable
 
-Finally, add both of your LXDs as `http://` remotes
+Finally, add both of your LXDs as non unix-socket remotes
 ([required](https://github.com/lxc/lxd/blob/master/lxc/copy.go#L79) for
 now, but not forever):
 
-    lxc remote add lxd http://thishost:8443   # don't use localhost here
-    lxc remote add lxd2 http://otherhost:8443 # use a publicly addressable name
+    lxc remote add lxd thishost:8443   # don't use localhost here
+    lxc remote add lxd2 otherhost:8443 # use a publicly addressable name
 
 Profiles used by a particular container need to be present on both the
 source of the migration and the sink, so we should copy the profile to
