@@ -56,11 +56,7 @@ the migration):
 
     lxd-images import lxc ubuntu trusty amd64 --alias ubuntu
 
-which will then allow you to create a container to migrate:
-
-    lxc init ubuntu migratee
-
-Lastly, you'll also need to set a few configuration items in lxd. First,
+You'll also need to set a few configuration items in lxd. First,
 the container needs to be privileged, although there is [yet
 more](http://lists.openvz.org/pipermail/criu/2015-February/018934.html)
 ongoing work to remove this restriction. There are also a few things that
@@ -81,11 +77,15 @@ And paste the following content in instead of what's there:
         lxc.start.auto =
         lxc.start.auto = proc:mixed sys:mixed
       security.privileged: "true"
-    devices: {}
+    devices:
+      eth0:
+        nictype: bridged
+        parent: lxcbr0
+        type: nic
 
-And apply the profile to your container:
+Finally, launch your contianer:
 
-    lxc config profile apply migratee migratable
+    lxc launch ubuntu migratee -p migratable
 
 Finally, add both of your LXDs as non unix-socket remotes
 ([required](https://github.com/lxc/lxd/blob/master/lxc/copy.go#L79) for
