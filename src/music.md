@@ -8,7 +8,7 @@ list local shows here (or e.g. any one of the dozens of bands that play at
 larger festivals I've attended such as Ozzfest). In general, these are the
 bands who are on the "[bucket list][2]", so to speak.
 
-#. Meshuggah (8)
+#. Meshuggah (9)
 #. Adema
 #. Aerosmith
 #. After the Burial
@@ -28,6 +28,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Creed
 #. Dave Matthews Band
 #. Deftones (3)
+#. Devin Townsend Project
 #. Disturbed (3)
 #. Drowning Pool
 #. Eminem
@@ -36,7 +37,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. GWAR
 #. Gnarls Barkley
 #. Godsmack (2)
-#. Gojira (2)
+#. Gojira (3)
 #. Guns 'n Roses
 #. Hardcore Crayons
 #. Hed P.E.
@@ -86,6 +87,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Three Doors Down
 #. Train
 #. Trampled by Turtles
+#. Veil of Maya
 
 Here's a list of things I would like to see, but haven't yet. Some of them may
 never happen again, but I've still got them on my wish list :-)
