@@ -2,3 +2,10 @@ iframe {
   margin: 15px auto;
   display: block;
 }
+
+div.continentList {
+  display: inline-block;
+  margin: 15px;
+  text-align: left;
+  vertical-align: top;
+}
