@@ -22,7 +22,7 @@ So, if you want to have parity with `lxcbr0`, you'll need to configure the
 bridge yourself. There are a few ways to do this. For a step by step
 walkthrough, simply do:
 
-    sudo dpkg-reconfigure lxd
+    sudo dpkg-reconfigure -p medium lxd
 
 And answer the questions however you like. Alternatively, you can edit the file
 `/etc/default/lxd-bridge` and then do a:
