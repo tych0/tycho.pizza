@@ -25,9 +25,12 @@ walkthrough, simply do:
     sudo dpkg-reconfigure lxd
 
 And answer the questions however you like. Alternatively, you can edit the file
-`/etc/default/lxd-bridge` and then do a `sudo service lxd restart`. For feature
-parity with `lxcbr0`, you can use something like the following (note the
-10.0.4.\*, so as not to conflict with `lxcbr0`):
+`/etc/default/lxd-bridge` and then do a:
+
+    sudo service lxd-bridge stop && sudo service lxd restart
+
+For feature parity with `lxcbr0`, you can use something like the following
+(note the 10.0.4.\*, so as not to conflict with `lxcbr0`):
 
     # Whether to setup a new bridge or use an existing one
     USE_LXD_BRIDGE="true"
@@ -81,10 +84,15 @@ parity with `lxcbr0`, you can use something like the following (note the
 And that's it! That's all you need to do to configure `lxdbr0`.
 
 Sometimes, though, you don't really want your containers to live on a separate
-network than the host because you want to ssh to them directly or something. To
-do this, you can simply add another bridge which is bridged onto your main NIC.
-You'll need to edit your `/etc/network/interfaces.d/eth0.cfg` to look like
-this:
+network than the host because you want to ssh to them directly or something.
+There are a few ways to accomplish this, the simplest is with macvlan:
+
+    lxc profile device set default eth0 parent eth0
+    lxc profile device set default eth0 nictype macvlan
+
+Another way to do this is by adding another bridge which is bridged onto your
+main NIC. You'll need to edit your `/etc/network/interfaces.d/eth0.cfg` to look
+like this:
 
     # The primary network interface
     auto eth0
@@ -97,18 +105,9 @@ with the contents:
     iface containerbr inet dhcp
       bridge_ports eth0
 
-Finally, you'll need to edit the default LXD profile (`lxc profile edit
-default`) to look something like this:
+Finally, you'll need to change the default lxd profile to use your new bridge:
 
-    name: default
-    config: {}
-    description: ""
-    devices:
-      eth0:
-        type: nic
-        nictype: bridged
-        name: eth0
-        parent: containerbr
+    lxc profile device set default eth0 parent containerbr
 
 Restart the `networking` service (which if you do it over ssh, may boot you :),
 and away you go. If you want some of your containers to be on one bridge, and
