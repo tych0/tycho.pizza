@@ -27,7 +27,7 @@ walkthrough, simply do:
 And answer the questions however you like. Alternatively, you can edit the file
 `/etc/default/lxd-bridge` and then do a `sudo service lxd restart`. For feature
 parity with `lxcbr0`, you can use something like the following (note the
-10.0.4.\*, so as not to conflict with lxcbr0):
+10.0.4.\*, so as not to conflict with `lxcbr0`):
 
     # Whether to setup a new bridge or use an existing one
     USE_LXD_BRIDGE="true"
