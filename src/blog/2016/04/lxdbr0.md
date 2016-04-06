@@ -20,12 +20,17 @@ time of bridge creation) this can break routing for users' networks.
 
 So, if you want to have parity with `lxcbr0`, you'll need to configure the
 bridge yourself. There are a few ways to do this. For a step by step
-walkthrough, simply do:
+walkthrough of just configuring the bridge, simply do:
 
     sudo dpkg-reconfigure -p medium lxd
 
-And answer the questions however you like. Alternatively, you can edit the file
-`/etc/default/lxd-bridge` and then do a:
+And answer the questions however you like. If you've never configured LXD at
+all (and e.g. want to use a fancy filesystem like ZFS), try:
+
+    sudo lxd init
+
+Which will configure all of LXD (both the filesystem and `lxdbr0`). Finally,
+you can edit the file `/etc/default/lxd-bridge` and then do a:
 
     sudo service lxd-bridge stop && sudo service lxd restart
 
