@@ -15,9 +15,8 @@ programmed, I would like to help.
 
 ### Play
 
-I ride bikes. I do backcountry and downhill skiing. I live in [Denver,
-Colorado, USA][4], where I work out of my tiny downtown apartment and [ride
-bikes][5] most days.
+I live in [Denver, Colorado, USA][4], where I work out of my tiny downtown
+apartment. I [ride bikes][5]. I do [improv comedy][6].
 
 ### I have friends
 
@@ -28,3 +27,4 @@ I have friends! Unbelievable, I know. Some of them even have [web pages][2].
  [3]: http://canonical.com
  [4]: http://en.wikipedia.org/wiki/Denver,_Colorado
  [5]: https://www.strava.com/athletes/13638050
+ [6]: http://www.bovinemetropolis.com/node/28
