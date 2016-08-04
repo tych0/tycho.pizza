@@ -15,9 +15,9 @@ programmed, I would like to help.
 
 ### Play
 
-I ride bikes. I do backcountry and downhill skiing. I live in [Madison,
-Wisconsin, USA][4], where I work out of my tiny downtown apartment most days,
-unless it is very nice, when I work from the [terrace][5].
+I ride bikes. I do backcountry and downhill skiing. I live in [Denver,
+Colorado, USA][4], where I work out of my tiny downtown apartment and [ride
+bikes][5] most days.
 
 ### I have friends
 
@@ -26,5 +26,5 @@ I have friends! Unbelievable, I know. Some of them even have [web pages][2].
  [1]: http://en.wikipedia.org/wiki/Joseph_Fourier
  [2]: /pages/friends
  [3]: http://canonical.com
- [4]: http://en.wikipedia.org/wiki/Madison,_Wisconsin
- [5]: https://www.google.com/images?q=memorial+union+terrace
+ [4]: http://en.wikipedia.org/wiki/Denver,_Colorado
+ [5]: https://www.strava.com/athletes/13638050
