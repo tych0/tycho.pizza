@@ -11,7 +11,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Meshuggah (9)
 #. Adema
 #. Aerosmith
-#. After the Burial
+#. After the Burial (2)
 #. Alice Cooper
 #. Animals as Leaders (4)
 #. Between the Buried and Me
@@ -60,6 +60,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Mumford and Sons
 #. Muse
 #. MushroomHead
+#. Nile
 #. Nine Inch Nails
 #. Ozzy Osbourne (3)
 #. P.O.D.
