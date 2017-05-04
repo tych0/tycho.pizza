@@ -13,7 +13,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Aerosmith
 #. After the Burial (2)
 #. Alice Cooper
-#. Animals as Leaders (4)
+#. Animals as Leaders (5)
 #. Between the Buried and Me
 #. Big Bad Voodoo Daddy
 #. Black Label Society
@@ -88,7 +88,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Three Doors Down
 #. Train
 #. Trampled by Turtles
-#. Veil of Maya
+#. Veil of Maya (2)
 
 Here's a list of things I would like to see, but haven't yet. Some of them may
 never happen again, but I've still got them on my wish list :-)
