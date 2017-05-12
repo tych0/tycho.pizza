@@ -28,7 +28,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Creed
 #. Dave Matthews Band
 #. Deftones (3)
-#. Devin Townsend Project
+#. Devin Townsend Project (2)
 #. Disturbed (3)
 #. Drowning Pool
 #. Eminem
@@ -37,7 +37,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. GWAR
 #. Gnarls Barkley
 #. Godsmack (2)
-#. Gojira (3)
+#. Gojira (4)
 #. Guns 'n Roses
 #. Hardcore Crayons
 #. Hed P.E.
@@ -62,6 +62,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. MushroomHead
 #. Nile
 #. Nine Inch Nails
+#. Opeth
 #. Ozzy Osbourne (3)
 #. P.O.D.
 #. Passenger
