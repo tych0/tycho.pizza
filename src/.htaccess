@@ -6,5 +6,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ %{REQUEST_FILENAME}.html
 
 RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_FILENAME} !.*dh-dyndns.php.*$
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
