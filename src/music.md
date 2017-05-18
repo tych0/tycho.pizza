@@ -68,7 +68,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Passenger
 #. Pearl Jam
 #. Periphery
-#. Primus (3)
+#. Primus (4)
 #. Puddle of Mudd
 #. Reaping Asmodeia (lots)
 #. Red Hot Chilli Peppers
