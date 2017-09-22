@@ -17,7 +17,7 @@ First, find out your uid on the host:
     uid=1000(tycho) gid=1000(tycho) groups=1000(tycho),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),112(lpadmin),124(sambashare),129(libvirtd),149(lxd),150(sbuild)
 
 On standard Ubuntu hosts, the uid of the first user is 1000. Now, we need to
-allow LXD to remap to remap this id; you'll need an additional entry for root
+allow LXD to remap this id; you'll need an additional entry for root
 to do this:
 
     $ echo 'root:1000:1' | sudo tee -a /etc/subuid /etc/subgid
