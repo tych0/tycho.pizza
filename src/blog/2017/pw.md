@@ -52,7 +52,7 @@ additional feature (discussed in TODO) would be a global offset for the
 algorithm, so people could choose e.g. to not use the default offset of 0, but
 something else for all of their passwords.
 
-### Usage
+#### Usage
 
 `pw` has support for storing a password in the OS native keyring, via
 `--{get,set,delete}-keyring-password`, so that users don't have to type in
