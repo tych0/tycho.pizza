@@ -34,6 +34,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Eminem
 #. Evanescence (2)
 #. Flaw
+#. Foo Fighters
 #. GWAR
 #. Gnarls Barkley
 #. Godsmack (2)
