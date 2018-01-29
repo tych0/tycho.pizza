@@ -1,6 +1,6 @@
 ---
 title: stacker: build OCI images without host privilege
-date: 2018-12-28
+date: 2018-01-28
 tags: linux, OCI, containers, golang
 ---
 
