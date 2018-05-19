@@ -5,11 +5,8 @@ HAGGIS=~/packages/haggis/dist/build/haggis/haggis
 serve: out
 	cd out && python -m SimpleHTTPServer
 
-deploy-beta: out
-	rsync --progress -rltz ./out/ tycho.ws:/home/tychoa/beta.tycho.ws/
-
 deploy:
-	rsync --progress -rltz ./out/ tycho.ws:/home/tychoa/tycho.ws/
+	rsync --progress -rltz ./out/ tycho.ws:/var/www/html/vhosts/tycho.ws
 
 out: $(HAGGIS) haggis.conf src templates/*.html
 	$(HAGGIS) --input . --output out
