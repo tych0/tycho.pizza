@@ -9,3 +9,8 @@ div.continentList {
   text-align: left;
   vertical-align: top;
 }
+
+p.links {
+  border-top: thin solid rgba(0, 0, 0, 0.15);
+  padding-top: 10px;
+}
