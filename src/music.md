@@ -77,6 +77,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Seether
 #. Seven Mary Three
 #. Sevendust
+#. Shawn James
 #. Shinedown
 #. Slayer
 #. Slipknot (3)
@@ -85,6 +86,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Stone Temple Pilots
 #. System of a Down
 #. Tantric
+#. Tigran Hamasyan
 #. The Rolling Stones
 #. Three Days Grace (2)
 #. Three Doors Down
