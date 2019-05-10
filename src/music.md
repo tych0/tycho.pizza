@@ -93,6 +93,7 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Train
 #. Trampled by Turtles
 #. Veil of Maya (2)
+#. Vulfpeck
 
 Here's a list of things I would like to see, but haven't yet. Some of them may
 never happen again, but I've still got them on my wish list :-)
