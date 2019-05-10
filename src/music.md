@@ -2,11 +2,10 @@
 title: Music
 ---
 
-Here's a list of the bands I've seen live, and a list of ones I'm interested in
-seeing live. (N) indicates I've been to see a band N times. Also, I tend not to
-list local shows here (or e.g. any one of the dozens of bands that play at
-larger festivals I've attended such as Ozzfest). In general, these are the
-bands who are on the "[bucket list][2]", so to speak.
+Here's a list of the bands I've seen live. (N) indicates I've been to see a
+band N times. Also, I tend not to list local shows here (or e.g. any one of the
+dozens of bands that play at larger festivals I've attended such as Ozzfest).
+In general, these are the bands who are on the "[bucket list][1]", so to speak.
 
 #. Meshuggah (11)
 #. Adema
@@ -95,23 +94,4 @@ bands who are on the "[bucket list][2]", so to speak.
 #. Veil of Maya (2)
 #. Vulfpeck
 
-Here's a list of things I would like to see, but haven't yet. Some of them may
-never happen again, but I've still got them on my wish list :-)
-
-#. Everlast
-#. Nirvana
-#. Alice in Chains
-#. Puscifer/Tool/Maynard/A Perfect Circle
-#. Greg Laswell
-#. Guster
-#. Rage Against the Machine
-#. Jason Mraz
-#. Gavin DeGraw
-#. Da Vinci's Notebook
-#. Metallica
-#. Bloodbath
-#. Soulfly
-#. [Wacken Open Air][1] festival
-
- [1]: http://en.wikipedia.org/wiki/Wacken_Open_Air
- [2]: http://en.wikipedia.org/wiki/Kick_the_bucket
+ [1]: http://en.wikipedia.org/wiki/Kick_the_bucket
