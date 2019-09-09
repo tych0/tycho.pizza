@@ -55,6 +55,7 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. Marilyn Manson (2)
 #. Mason Jennings
 #. MGMT
+#. Misfits
 #. Mötley Crüe
 #. Motograter
 #. Mudvayne (2)
