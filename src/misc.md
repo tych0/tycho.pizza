@@ -4,8 +4,8 @@ title: Miscellaneous
 
 ### Contact
 
-I can be reached at tycho@ this domain. Disclaimer: all of my e-mail (right
-now, anyways) goes through Google's mail servers.
+I can be reached at tycho@ this domain. Disclaimer: all of my e-mail goes
+through Google's mail servers.
 
 ### Play
 
