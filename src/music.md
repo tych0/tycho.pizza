@@ -21,7 +21,7 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. Cake
 #. Chevelle
 #. Christina Perri
-#. Clutch
+#. Clutch (2)
 #. Cold
 #. Coldplay
 #. Cradle of Filth
@@ -38,7 +38,7 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. GWAR
 #. Gnarls Barkley
 #. Godsmack (2)
-#. Gojira (4)
+#. Gojira (5)
 #. Guns 'n Roses
 #. Hardcore Crayons
 #. Hed P.E.
@@ -49,8 +49,8 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. Jack Johnson
 #. Kid Rock
 #. Killswitch Engage
-#. KoЯn (5)
-#. Lamb of God (5)
+#. KoЯn (6)
+#. Lamb of God (6)
 #. Linkin Park
 #. Marilyn Manson (2)
 #. Mason Jennings
@@ -74,6 +74,7 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. Puddle of Mudd
 #. Reaping Asmodeia (lots)
 #. Red Hot Chilli Peppers
+#. Rob Zombie
 #. Rihanna
 #. Seether
 #. Seven Mary Three
@@ -81,16 +82,17 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. Shawn James
 #. Shinedown
 #. Slayer
-#. Slipknot (3)
-#. Staind
+#. Slipknot (4)
+#. Staind (2)
 #. Stone Sour
-#. Stone Temple Pilots
+#. Stone Temple Pilots (2)
 #. System of a Down
 #. Tantric
 #. Tigran Hamasyan
 #. The Rolling Stones
 #. Three Days Grace (2)
 #. Three Doors Down
+#. Tool
 #. Train
 #. Trampled by Turtles
 #. Veil of Maya (2)
