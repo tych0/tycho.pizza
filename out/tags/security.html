@@ -1,0 +1,65 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Tagged: security</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Just how expensive is slub_deug=p?</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2017-03-31</span></small>
+  </p>
+  <div class='content'><p>Recently, I became interested in a debugging option in the Linux kernel</p>
+<h3>slub_debug=p</h3>
+<p>``` Average Half load -j 2 Run (std deviation): Elapsed Time 44.586 (1.67125) User Time 73.874 (2.51294) System Time 7.756 (0.741741) Percent CPU 182.4 (0.547723) Context Switches 13880.8 (157.161) Sleeps 15745.2 (24.3146)</p>
+<p>Average Optimal load -j 4 Run (std deviation): Elapsed Time 32.702 (0.400087) User Time 89.22 (16.3062) System Time 8.945 (1.37014) Percent CPU 266.4 (88.5729) Context Switches 15701 (1929.57) Sleeps 15722.2 (78.1875) ```</p>
+<h3>without slub_debug=p</h3>
+<p>``` Average Half load -j 2 Run (std deviation): Elapsed Time 40.614 (0.232873) User Time 69.978 (0.503061) System Time 5.09 (0.182209) Percent CPU 184.4 (0.547723) Context Switches 13596 (121.501) Sleeps 15740.4 (46.4629)</p>
+<p>Average Optimal load -j 4 Run (std deviation): Elapsed Time 30.622 (0.171523) User Time 86.233 (17.1381) System Time 5.874 (0.853557) Percent CPU 270.1 (90.3431) Context Switches 15370.3 (1875.97) Sleeps 15777.4 (74.43) ```</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/kernel.html' class='tag'>kernel, </a><a href='/tags/security.html' class='tag'>security</a></span>
+       •   <a href='/blog/2017/slub_debug.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Manage passwords without state</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-09-06</span></small>
+  </p>
+  <div class='content'><p>A few years ago I had a problem: I had a bunch of accounts that I accessed once a year when tax time came around, and I kept forgetting the passwords. Often I'd try a few before locking myself out, and then I'd have to spend an hour on the phone with customer service getting my account unlocked, which meant if I was doing my taxes on the last weekend possible, I wouldn't be able to complete them until the next business day. The obvious solution to this problem is to store the passwords in some kind of password manager -- lots of them exist for all kinds of platforms: phone, computer, browser, etc.</p>
+<p>The problem with password manager is that they typically require some kind of state file. They store the mapping between site and cleartext password in some file, and then they decrypt it with some secret from you when you want to access it. Thus, you have to 1. trust the person who is doing the encrypting and decrypting that they are doing it correctly so that when your laptop gets stolen your passwords aren't leaked, and 2. you have to have <em>access</em> to the machine that the passwords are stored on when you want to use them. If you've left your laptop at home or you forgot to back up your password file when you got a new computer, you're SOL.</p>
+<p>What's the solution? A password manager without state, of course! Since we're assuming the user can remember at least one pretty good password, we can use that as our "state", so we end up with the algorithm as follows:</p>
+<pre><code>hash = sha512(user_secret + "example.org")
+base64encode(hash)[:10]</code></pre>
+<p>Here, we're using the domain to salt the user secret so the generated passwords are different for each site. <code>sha512</code> provides randomness, although we are only using the first 60 bits of the output here (10 base64 characters, each character encodes six bits of entropy), there are significantly more bits of entropy here than in your typical English character, making it a much stronger password. Further, the algorithm is very simple, and you could re-implement it on any computer that has your favorite programming language environment available. Thus, you can use it in a pinch, since all you need to remember are the algorithm and your <code>user_secret</code>. I've <a href='https://github.com/tych0/password'>published</a> a python script that implements this mechanism, so you don't even have to remember the algorithm</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/password.html' class='tag'>password, </a><a href='/tags/security.html' class='tag'>security, </a><a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2013/09/password.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

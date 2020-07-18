@@ -1,0 +1,56 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>WTF, Linux?</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div>
+<div class='page well'>
+  <h2 class='title'>WTF, Linux?</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on </small>
+  </p>
+  <div class='content'><p>Sometimes, weird things happen on your system.</p>
+<p>The first thing to look at on any given system is the output of top:</p>
+<p>``` top - 16:34:38 up 2 days, 1:46, 19 users, load average: 0.74, 0.45, 0.39 Tasks: 290 total, 1 running, 288 sleeping, 0 stopped, 1 zombie %Cpu(s): 2.5 us, 5.2 sy, 0.0 ni, 91.8 id, 0.0 wa, 0.0 hi, 0.5 si, 0.0 st MiB Mem : 15785.9 total, 1554.9 free, 3441.4 used, 10789.5 buff/cache MiB Swap: 976.0 total, 976.0 free, 0.0 used. 11682.1 avail Mem</p>
+<p>PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND 10856 tycho 20 0 1575288 66744 15424 S 5.9 0.4 25:42.61 hangups 4046 root 20 0 311044 48760 27076 S 4.0 0.3 30:22.79 Xorg 12812 tycho 20 0 1127988 316872 152760 S 3.0 2.0 13:29.05 chrome 12852 tycho 20 0 370588 103756 61092 S 2.0 0.6 6:22.84 chrome 30949 tycho 20 0 51804 18328 11976 S 2.0 0.1 0:00.81 urxvt 31013 tycho 20 0 12268 4316 3428 R 2.0 0.0 0:01.20 top 642 root -51 0 0 0 0 S 1.0 0.0 8:55.92 irq/134-iwlwifi 26517 tycho 20 0 603672 147324 78360 S 1.0 0.9 0:09.02 chrome 1 root 20 0 166772 11124 7692 S 0.0 0.1 0:07.28 systemd 2 root 20 0 0 0 0 S 0.0 0.0 0:00.09 kthreadd 3 root 0 -20 0 0 0 I 0.0 0.0 0:00.00 rcu<em>gp 4 root 0 -20 0 0 0 I 0.0 0.0 0:00.00 rcu</em>par<em>gp 6 root 0 -20 0 0 0 I 0.0 0.0 0:00.00 kworker/0:0H-events</em>highpri 8 root 0 -20 0 0 0 I 0.0 0.0 0:00.00 mm<em>percpu</em>wq 9 root 20 0 0 0 0 S 0.0 0.0 0:03.80 ksoftirqd/0 10 root 20 0 0 0 0 I 0.0 0.0 3:36.11 rcu<em>sched 11 root rt 0 0 0 0 S 0.0 0.0 0:00.70 migration/0 12 root -51 0 0 0 0 S 0.0 0.0 0:00.00 idle</em>inject/0 ```</p>
+<p><code>top</code> allows you to sort by what's using lots of CPU, memory, etc. This machine is not loaded at all, according to the load average:</p>
+<p><code>load average: 0.74, 0.45, 0.39</code></p>
+<p>The first number is the load average in the last minute, the second number is the load average over the last five minutes, and the third number is the load average over the last 15 minutes. Note that load averages are a multiple of cores, so a machine with four cores and a load average of 4 is totally CPU bound. Additionally, the load average is really the number of processes that "wanted" to run, not the number of processes that were actually running. So a machine with four cores and a load average of 16 is 4x oversubscribed on CPU.</p>
+<p>But the most magical line in top is the per-cpu state line:</p>
+<p><code>%Cpu(s):  2.5 us,  5.2 sy,  0.0 ni, 91.8 id,  0.0 wa,  0.0 hi,  0.5 si,  0.0 st</code></p>
+<p>Often, a careful reading of this line can tell you what is going on with a system. The numbers here are percentages and similar to load averages in that percentages &gt; 100 are still sensible. But the most interesting thing are the suffixes here. From the top man page:</p>
+<p><code>us, user    : time running un-niced user processes sy, system  : time running kernel processes ni, nice    : time running niced user processes id, idle    : time spent in the kernel idle handler wa, IO-wait : time waiting for I/O completion hi : time spent servicing hardware interrupts si : time spent servicing software interrupts st : time stolen from this vm by the hypervisor</code></p>
+<p>Mostly, you'll see high numbers in the <code>us</code>, <code>sy</code>, <code>id</code>, and <code>wa</code> columns. Large values in <code>us</code>, <code>ni</code>, means that the workload is CPU bound. These will generally correlate with non-zero values in <code>sy</code>, since <code>sy</code> indicates time stuff was running in the kernel. Large values in <code>sy</code> relative to <code>us</code> almost always indicate a problem</p></div>
+  <div class='meta'>
+      <p class='links'>
+      Please e-mail comments to tycho@ this domain.
+      <span class='tags'> Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/debugging.html' class='tag'>debugging, </a><a href='/tags/strace.html' class='tag'>strace</a></span>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

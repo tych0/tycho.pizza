@@ -1,0 +1,76 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2015 - 5</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Using the LXD API from Python</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2015-05-26</span></small>
+  </p>
+  <div class='content'><p>After our recent splash at ODS in Vancouver, it seems that there is a lot of interest in writing some python code to drive LXD to do various things. The first option is to use <a href='https://github.com/lxc/pylxd'>pylxd</a>, a project maintained by a friend of mine at Canonical named Chuck Short. However, the primary client of this is OpenStack, and thus it is python2. We also don't want to add a lot of dependencies in this module, so we're using raw python urllib and friends, which as you know can sometimes be...painful :)</p>
+<p>Another option would be to use python's awesome <a href='http://python-requests.org'>requests</a> module, which is considerably more user friendly. However, since LXD uses client certificates, it can be a bit challenging to get the basic bits going. Here's a small program that just does some GETs to the API, to see how it might work:</p>
+<pre><code>import os.path
+
+import requests
+
+conf_dir = os.path.expanduser('~/.config/lxc')
+crt = os.path.join(conf_dir, 'client.crt')
+key = os.path.join(conf_dir, 'client.key')
+
+print(requests.get('https://127.0.0.1:8443/1.0', verify=False, cert=(crt, key)).text)</code></pre>
+<p>which gives me (piped through jq for sanity):</p>
+<pre><code>$ python3 lxd.py | jq .
+{
+  "type": "sync",
+  "status": "Success",
+  "status_code": 200,
+  "metadata": {
+    "api_compat": 1,
+    "auth": "trusted",
+    "config": {
+      "trust-password": true
+    },
+    "environment": {
+      "backing_fs": "ext4",
+      "driver": "lxc",
+      "kernel_version": "3.19.0-15-generic",
+      "lxc_version": "1.1.2",
+      "lxd_version": "0.9"
+    }
+  }
+}</code></pre>
+<p>It just piggy backs on the lxc client generated certificates for now, but it would be great to have some python code that could generate those as well!</p>
+<p>Another bit I should point out for people is lxd's <code>--debug</code> flag, which prints out every request it receives and response that it sends. I found this useful while developing the default <code>lxc</code> client, and it will probably be useful to those of you out there who are developing your own clients.</p>
+<p>Happy hacking!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/lxd.html' class='tag'>lxd, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2015/05/lxd-python.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

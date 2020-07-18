@@ -1,0 +1,70 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2011 - 12</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Unifying Logitech Devices on Linux</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2011-12-12</span></small>
+  </p>
+  <div class='content'><p>I was recently given a <a href='http://www.amazon.com/Logitech-Wireless-Illuminated-Keyboard-K800/dp/B003VAGXWK/'>Logitech K800 keyboard</a> and a <a href='http://www.amazon.com/Logitech-Wireless-Performance-Mouse-Mac/dp/B002HWRJBM'>Logitech Performance Mouse MX</a>, both of which are great devices. I picked them because wireless-ness is useful for ergonomic reasons, and they have rechargeable batteries, and you can attach them both to the same USB input, so you have fewer cables lying around.</p>
+<p>Naturally, though, when I unboxed them I found out that you can only unify them to the same receiver with Windows-only software. There are a number of other features that are only usable with the Windows-only software, but I figured there would be a hardware sync process. Unfortunately, there's not a Logitech supported one.</p>
+<p>There is, however, a <a href='http://groups.google.com/group/linux.kernel/msg/36c53d79832fc3f5'>community developed one</a>! There's a short C program with a bunch of magic numbers which send commands to the device and cause it to unify with a new device. Unfortunately, the program comes with no directions, so I thought I'd post about how to do it. First, put the program in <code>pairing_tool.c</code>, as suggested in the post. Then, compile it with:</p>
+<pre><code>gcc -o pairing_tool pairing_tool.c</code></pre>
+<p>To run it, we need to figure out where the Logitech unifying receiver is. The program wants the hidraw device corresponding to the unifying receiver. To find this out, you can look in <code>/sys/class/hidraw/hidraw*/device/uevent</code>. In my case, the device is <code>hidraw2</code>, and the output looks like this:</p>
+<pre><code>smitten:~$ cat /sys/class/hidraw/hidraw2/device/uevent 
+DRIVER=generic-usb
+HID_ID=0003:0000046D:0000C52B
+HID_NAME=Logitech USB Receiver
+HID_PHYS=usb-0000:00:1a.0-1.4/input2
+HID_UNIQ=
+MODALIAS=hid:b0003v0000046Dp0000C52B</code></pre>
+<p>So, we can now unify the devices with the following command:</p>
+<pre><code>sudo ./pairing_tool /dev/hidraw2</code></pre>
+<p>And then power on your device as the tool tells you to. I think there's some timeout on this, because the first time I did it I waited a few minutes and then powered on the device, and it didn't work. So, have your device ready and do it seconds after you run the pairing tool, and it should all work fine. HTH!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/bugfix.html' class='tag'>bugfix</a></span>
+       •   <a href='/blog/2011/12/logitech-unifying-receiver.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Python "binding" for Ampache</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2011-12-19</span></small>
+  </p>
+  <div class='content'><p>Ahoy!</p>
+<p>Just writing a quick post to pimp my new <a href='http://ampache.org/'>Ampache</a> "bindings", which are called <a href='https://github.com/tych0/ampyche'>ampyche</a>, naturally ;-). I slapped them together one afternoon mostly to get an understanding of the Ampache API, so that's why I used my native language. I have no specific plans for any python applications using them, but I'm interested in improving the stability of Android-based Ampache clients, as well as adding support for Ampache to Clementine, so I thought this would be a good place to start.</p>
+<p>In any case, I hope someone finds them useful! Happy hacking!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/python.html' class='tag'>python, </a><a href='/tags/ampache.html' class='tag'>ampache, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2011/12/ampyche.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2014</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>lxd and Doom migration demo</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-11-10</span></small>
+  </p>
+  <div class='content'><p>Last week at the Openstack Developer Summit I gave a live demo of <a href='https://www.youtube.com/watch?v=a9T2gcnQg2k&t=1189'>migrating a linux container running doom</a>, which generated quite a lot of excitement! Several people asked me for steps on reproducing the demo, which I have <a href='https://github.com/tych0/presentations/blob/master/ods2014.md'>just posted</a>.</p>
+<p>I am one of Canonical's developers working on lxd, and I will be focused on bringing migration and other features into it. I'm very excited about the opportunity to work on this project! Stay tuned!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/lxd.html' class='tag'>lxd, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/doom.html' class='tag'>doom, </a><a href='/tags/migration.html' class='tag'>migration</a></span>
+       •   <a href='/blog/2014/11/lxd.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Qtile's crazy 0.9.0 changes have landed</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-09-13</span></small>
+  </p>
+  <div class='content'><p>We have re-written a lot of the underlying code that powers qtile, in order to support python2/3, pypi, as well as getting rid of several memory leaks. This work is now done and on the development branch, see the <a href='https://groups.google.com/forum/#!topic/qtile-dev/vHsY8l8ya2A'>mailing list announcement</a> for more info.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2014/09/qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Live Migration of Linux Containers</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-10-08</span></small>
+  </p>
+  <div class='content'><p>Recently, I've been playing around with <a href='http://criu.org'>checkpoint and restore</a> of <a href='http://linuxcontainers.org'>Linux containers</a>. One of the obvious applications is checkpointing on one host and restoring on another (i.e. live migration). Live migration has all sorts of interesting applications, so it is nice to know that at least a proof of concept of it works today.</p>
+<p>Anyway, onto the interesting bits! The first thing I did was create two vms, and install criu's and lxc's development versions on both hosts:</p>
+<pre><code>sudo add-apt-repository ppa:ubuntu-lxc/daily
+sudo apt-get update
+sudo apt-get install lxc
+
+sudo apt-get install build-essential protobuf-c-compiler
+git clone https://github.com/xemul/criu && cd criu && sudo make install</code></pre>
+<p>Then, I created a container:</p>
+<pre><code>sudo lxc-create -t ubuntu -n u1 -- -r trusty -a amd64</code></pre>
+<p>Since the work on container checkpoint/restore is so young, not all container configurations are supported. In particular, I had to add the following to my config:</p>
+<pre><code>cat &lt;&lt; EOF | sudo tee -a /var/lib/lxc/u1/config
+# hax for criu
+lxc.console = none
+lxc.tty = 0
+lxc.cgroup.devices.deny = c 5:1 rwm
+EOF</code></pre>
+<p>Finally, although the lxc-checkpoint tool allows us to checkpoint and restore containers, there is no support for migration directly today. There are several tools in the works for this, but for now we can just use a cheesy shell script:</p>
+<pre><code>cat &gt; migrate &lt;&lt;EOF
+#!/bin/sh
+set -e
+
+usage() {
+  echo $0 container user@host.to.migrate.to
+  exit 1
+}
+
+if [ "$(id -u)" != "0" ]; then
+  echo "ERROR: Must run as root."
+  usage
+fi
+
+if [ "$#" != "2" ]; then
+  echo "Bad number of args."
+  usage
+fi
+
+name=$1
+host=$2
+
+checkpoint_dir=/tmp/checkpoint
+
+do_rsync() {
+  rsync -aAXHltzh --progress --numeric-ids --devices --rsync-path="sudo rsync" $1 $host:$1
+}
+
+# we assume the same lxcpath on both hosts, that is bad.
+LXCPATH=$(lxc-config lxc.lxcpath)
+
+lxc-checkpoint -n $name -D $checkpoint_dir -s -v
+
+do_rsync $LXCPATH/$name/
+do_rsync $checkpoint_dir/
+
+ssh $host "sudo lxc-checkpoint -r -n $name -D $checkpoint_dir -v"
+ssh $host "sudo lxc-wait -n u1 -s RUNNING"
+EOF
+chmod +x migrate</code></pre>
+<p>Now, for the magic show! I've set up the container I created above to be a web server running micro-httpd that serves an incredibly important message:</p>
+<pre><code>$ ssh ubuntu@$(sudo lxc-info -n u1 -H -i)
+ubuntu@u1:~$ sudo apt-get install micro-httpd
+ubuntu@u1:~$ echo "Meshuggah is the best metal band." | sudo tee /var/www/index.html
+ubuntu@u1:~$ exit
+$ curl -s $(sudo lxc-info -n u1 -H -i)
+Meshuggah is the best metal band.</code></pre>
+<p>Let's migrate!</p>
+<pre><code>$ sudo ./migrate u1 ubuntu@criu2.local
+  # lots of rsync output...
+$ ssh ubuntu@criu2.local 'curl -s $(sudo lxc-info -n u1 -H -i)'
+Meshuggah is the best metal band.</code></pre>
+<p>Of course, there are several caveats to this. You've got to add the lines above to your config, which means you can't dump containers with ttys. Since containers have the hosts's fusectl bind mounted and fuse mounts aren't supported by criu, containers or hosts using fuse can't be dumped. You can't migrate unprivileged containers yet. There are probably others that I'm forgetting, though list of troubleshoting steps is available at <a href='http://criu.org/LXC#Troubleshooting'>criu.org/LXC#Troubleshooting</a>.</p>
+<p>There is ongoing work in both CRIU and LXC to get rid of all the caveats above, so stay tuned!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/migration.html' class='tag'>migration, </a><a href='/tags/lxc.html' class='tag'>lxc, </a><a href='/tags/criu.html' class='tag'>criu</a></span>
+       •   <a href='/blog/2014/09/container-migration.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Qtile 0.8.0 tagged!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-08-18</span></small>
+  </p>
+  <div class='content'><p>I've just tagged version 0.8.0 of Qtile! See the <a href='https://github.com/tych0/qtile/blob/master/CHANGELOG'>changelog</a> for full release details, and the <a href='https://groups.google.com/forum/#!topic/qtile-dev/1-D3ULN2QWI'>release announcement</a> for other detials. This release of Qtile also comes with a sleek <a href='http://qtile.org'>new website</a>, courtesy of <a href='https://github.com/dmpayton'>Derek Payton</a>.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2014/08/qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>xcffib 0.1.0 released!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-07-12</span></small>
+  </p>
+  <div class='content'><p>I'm excited to announce today that I've tagged the first release of <a href='https://github.com/tych0/xcffib'>xcffib</a>, v0.1.0. The testing of xcffib with qtile has been mostly successful, and I'm comfortable now tagging a release. Special thanks to <a href='https://github.com/flacjacket'>Sean Vig</a> who has done a lot of work on the python3 side of xcffib. Happy hacking!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/xcb.html' class='tag'>xcb, </a><a href='/tags/xcffib.html' class='tag'>xcffib, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2014/06/xcffib.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>CFFI-based Qtile!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-06-21</span></small>
+  </p>
+  <div class='content'><p>For the past while I've been working on a reimplementation of <a href='https://pypi.python.org/pypi/xpyb/1.3.1'>xpyb</a> in <a href='https://cffi.readthedocs.org/en/release-0.8/'>cffi</a>. There are several reasons to want to do this:</p>
+<h1>. xpyb has at least <a href='https://github.com/qtile/qtile/issues/395'>one more</a> memory leak (but probably others)</h1>
+<h1>. The xpyb upstream is inactive, and there is no sign of a python 3 port</h1>
+<h1>. It would be uber cool to be able to run qtile in pypy.</h1>
+<p>Using cffi soves 2 and 3 pretty easily, and I've made sure that xcffib's test suite runs through valgrind with no definite leaks, hopefully mitigating 1. However, even if we have xcffib, there is still a lot of work that needed to happen to make qtile run on top of it. I'm writing this post to announce that some of that work is done, and late last night I was able to boot qtile running on top of xffib! There are still lots of bugs, and lots of testing needs to be done, but we're most of the way there I think, and running qtile on python3 and pypy without memory leaks is no longer a pipe dream :-).</p>
+<p>To install, you'll need:</p>
+<h1>. <code>sudo apt-get install xcb-proto libpango1.0-dev libcairo2-dev</code> (or whatever</h1>
+<p>the equivalent packages are on your distro)</p>
+<h1>. Follow the <a href='https://github.com/tych0/xcffib/blob/master/.travis.yml#L17'>installation instructions</a> for xcffib.</h1>
+<h1>. Install the <code>xcffib</code> branch of <a href='https://github.com/tych0/cairocffi/tree/xcffib'>tych0/cairocffi</a></h1>
+<h1>. Install the <code>cffi</code> branch of <a href='https://github.com/tych0/qtile/tree/cffi'>tych0/qtile</a></h1>
+<p>I have not tried to test qtile on python 3 yet, so there may be some work that needs to be done to successfully run things on python 3. However, both xcffib and cairocffi run their test suites on python 3, and so the only work that needs to be done is probably in qtile, if any. pypy is another story however, as xcffib does not currently pass its test suite on pypy. I plan to fix that at some point, but I'd like to get qtile running completely before that happens.</p>
+<p>Finally, there are some bugs that manifest with qtile right now:</p>
+<h1>. The systray doesn't work. This is probably due to a bug in the way xcffib</h1>
+<p>unpacks ClientMessage events.</p>
+<h1>. Most of the text-based widgets don't work. This is probably due to a bug in</h1>
+<p>the pangocffi binding I wrote for qtile. I thing it is just an incompleteness, and I will try and fix it either today or tomorrow. Basic text widgets like the clock or the volume widget work just fine.</p>
+<h1>. Lots of other things are probably broken :-). Bug reports welcome.</h1>
+<p>Happy hacking!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2014/06/qtile-cffi.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Ubuntu 14.04 Trusty Tahr packages for Qtile</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-03-29</span></small>
+  </p>
+  <div class='content'><p>Just posting to let everyone know that I've published packages for the latest Qtile release on Ubuntu 14.10. See the <a href='https://groups.google.com/forum/#!topic/qtile-dev/FPCjTZmewqc'>mailing list announcement</a> for more details. Additionally, we will be doing a 0.7 release shortly, so please let me know if there are any release blocking bugs!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/ubuntu.html' class='tag'>ubuntu</a></span>
+       •   <a href='/blog/2014/03/qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Hquery, an HTML5 tree rewriting tool</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div>
+<div class='page well'>
+  <h2 class='title'>Hquery, an HTML5 tree rewriting tool</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-01-29</span></small>
+  </p>
+  <div class='content'><p>Recently I began rewriting the framework that powers this blog (<a href='https://github.com/tych0/gtfo'>gtfo</a>) in haskell. Among other things, I needed a good tree rewriting utility for processing templates and generating content. I've been using <a href='http://liftweb.net/'>Lift</a> at work for a while now, so I built hquery, which is basically an implementation of Lift's <a href='http://simply.liftweb.net/index-7.10.html'>CSS Selectors</a> over <a href='http://hackage.haskell.org/package/xmlhtml'>xmlhtml</a> trees. You can see some examples of the kind of transformations it allows in <a href='https://github.com/tych0/hquery#examples'>hquery's readme</a>. Additionally, it is available from <a href='http://hackage.haskell.org/package/hquery'>hackage</a> via <code>cabal install hquery</code>.</p>
+<p>Feedback is welcome, as this is my first haskell API. Bug reports and patches are of course welcome too :-)</p></div>
+  <div class='meta'>
+      <p class='links'>
+      Please e-mail comments to tycho@ this domain.
+      <span class='tags'> Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/haskell.html' class='tag'>haskell, </a><a href='/tags/html.html' class='tag'>html</a></span>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

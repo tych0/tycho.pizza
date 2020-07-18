@@ -1,0 +1,67 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>setproctitle() in Linux</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div>
+<div class='page well'>
+  <h2 class='title'>setproctitle() in Linux</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2015-02-09</span></small>
+  </p>
+  <div class='content'><p>While working on LXD, one of the things I occasionally do is submit patches to LXC (e.g. the migration work or other things). In particular, the name of the LXC monitor process (the process that's the parent of init) is <code>fork()ed</code> in the C API call, so whatever the name of the binary that ran the API call (in our case, LXD) is the name of the parent. This could be slightly confusing (especially in the case where LXD dies but a process that looks like it is named LXD lives on). Should be easy enough to fix, right? Lots of *nixes seem to have a <code>setproctitle()</code> function to correct this, so we'll just call that!</p>
+<p>And lo, there is <code>prctl()</code> which has a <code>PR_SET_NAME</code> mode that we can use. Done! Except from one small caveat from the man page:</p>
+<blockquote>
+<p>The name can be up to 16 bytes long, and should be null-terminated if it contains fewer bytes.</p>
+</blockquote>
+<p>Yes, you read that, 16 bytes; not useful for a lot of process names, especially something which would be ideal for LXC:</p>
+<pre><code>[lxc monitor] /var/lib/lxc container-name</code></pre>
+<p>Ok, so how hard can it be to write our own? If you look around on the internet, a lot of people suggest something like <code>strcpy(argv[0], "my-proc-name")</code>. That works, but what happens if your process name is longer than the original? You smash the stack! Try <code>cat /proc/&lt;pid&gt;/environ</code> on the program below:</p>
+<pre><code>#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+    char buf[1024];
+    memset(buf, '0', sizeof(buf));
+    buf[1023] = 0;
+    strncpy(argv[0], buf, sizeof(buf));
+    sleep(10000);
+    return 0;
+}</code></pre>
+<p>If your process name is longer than the original environment, you overwrite something else potentially more useful, which could cause all sorts of nastiness, especially as something that runs as root.</p>
+<p>The thing is, the environment isn't necessarily all that useful; it doesn't indicate the current environment, just the initial environment. So we could use that space for the process name, as long as the kernel knew the environment wasn't valid any more. <code>prctl()</code> to the rescue again, we can pass it <code>PR_SET_MM</code> and <code>PR_SET_MM_ENV_{START|END}</code> to update these locations.</p>
+<p>Problem solved! Except that we want to do this from <code>liblxc.so</code>, which has no concept of argv. <code>prctl()</code> has no <code>PR_GET_MM</code> calls, so we can't just go the other way with it. We could invent some ugly API where you have to pass it in, but that would require users to either set their argv pointers up front, or carry it around until they needed it, or something similarly ugly. Instead, we steal an idea from the CRIU codebase: we look in <code>/proc/&lt;pid&gt;/stat</code>. This file has (in columns 48-51, if your kernel is new enough) exactly the arguments you want from <code>PR_GET_MM_*</code>! Thus, we can use this file to find out inside of liblxc where is safe to put the new proctitle.</p>
+<p>Putting it all together, <a href='https://github.com/lxc/lxc/blob/master/src/lxc/utils.c#L1572'>liblxc now has an implementation of <code>setproctitle()</code></a> that will overwrite your initial environment (but is careful not to overwrite anything else), which can be used to set process titles longer than 16 bytes. Enjoy!</p></div>
+  <div class='meta'>
+      <p class='links'>
+      Please e-mail comments to tycho@ this domain.
+      <span class='tags'> Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/lxd.html' class='tag'>lxd, </a><a href='/tags/C.html' class='tag'>C</a></span>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

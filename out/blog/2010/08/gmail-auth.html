@@ -1,0 +1,54 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Gmail Atom Feed Authentication</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div>
+<div class='page well'>
+  <h2 class='title'>Gmail Atom Feed Authentication</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-03</span></small>
+  </p>
+  <div class='content'><p>Perhaps the most complicated part of the application in my <a href='http://tycho.ws/blog/2010/08/gmail-notify'>recent post</a> was the authentication with Gmail. Although my final method boils down to only a few lines of python, Google describes <a href='http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html'>several</a> <a href='http://code.google.com/apis/accounts/docs/OAuthForInstalledApps.html'>different</a> <a href='http://code.google.com/apis/accounts/docs/OpenID.html'>ways</a> to authenticate (additionally, putting the username and password directly in the URL). I didn't like any of these options, as some seemed much too complicated for what I wanted to do, some didn't work, and some were too insecure. However, it turns out that the atom feed supports HTTP's <a href='http://en.wikipedia.org/wiki/Basic_access_authentication#Example'>basic access authentication</a>. In python, this is fairly easy to do:</p>
+<pre><code>$ python
+&gt;&gt;&gt; import urllib2, base64
+&gt;&gt;&gt; username = "me@gmail.com"; password = "secret"
+&gt;&gt;&gt; url = "https://mail.google.com/mail/feed/atom/"
+&gt;&gt;&gt; req = urllib2.Request(url)
+&gt;&gt;&gt; authstr = base64.encodestring("%s:%s" % (username, password))[:-1]
+&gt;&gt;&gt; req.add_header("Authorization", "Basic " + authstr)
+&gt;&gt;&gt; urllib2.urlopen(req).read()</code></pre>
+<p>Note that the above also works for Google apps users you just have to stick "/a/example.com" in the appropriate spot in the URL. Hopefully this will help out someone else who is hopelessly bashing Google's servers with failed login attempts ;-)</p></div>
+  <div class='meta'>
+      <p class='links'>
+      Please e-mail comments to tycho@ this domain.
+      <span class='tags'> Tags: <a href='/tags/gmail.html' class='tag'>gmail, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

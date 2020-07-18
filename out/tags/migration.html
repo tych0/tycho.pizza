@@ -1,0 +1,196 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Tagged: migration</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>linux.conf.au 2016 talk</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2016-02-08</span></small>
+  </p>
+  <div class='content'><p>Last week I did this ridiculous thing where I flew around the world in the easterly direction, giving talks at FOSDEM and linux.conf.au. The linux.conf.au staff always do a great job of making talk videos, and this year was no exception.</p>
+<p>My talk was on LXD and live migration, a brief history of both as well as a status update and some discussion of future work on both. There were also lots of questions in this talk, so there's a lot of discussion of basic migration questions and inner workings.</p>
+<p>Unforatunately, I can't embed it here, so I'll give you a link instead. Also, keep in mind at the time I was giving this talk I had been up for ~40 hours, so I forgot some English words here and there :)</p>
+<p><a href='https://www.youtube.com/watch?v=ol85OJxDaHc'>https://www.youtube.com/watch?v=ol85OJxDaHc</a></p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/talks.html' class='tag'>talks, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/migration.html' class='tag'>migration, </a><a href='/tags/lxd.html' class='tag'>lxd</a></span>
+       •   <a href='/blog/2016/02/linux-conf-au.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Live Migration in LXD</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2015-04-06</span></small>
+  </p>
+  <div class='content'><p>There has been a lot of interest on the various mailing lists as well as internally at Canonical about the state of migration in LXD, so I thought I'd write a bit about the current state of affairs.</p>
+<p>Migration in LXD today passes the "Doom demo" test, i.e. it works well enough to reproduce the <a href='https://www.youtube.com/watch?v=a9T2gcnQg2k&t=1189'>LXD announcement demo</a> under certain conditions, which I'll cover below. There is still a lot of ongoing work to make <a href='http://criu.org'>CRIU</a> (the underlying migration technology) work with all these configurations, so support will eventually arrive for everything. For now, though, you'll need to use the configuration I describe below.</p>
+<p>First, I should note that things currently won't work on a systemd host. Since systemd re-mounts the rootfs as <code>MS_SHARED</code>, lots of things automatically become shared mounts, which confuses CRIU. There are <a href='http://lists.openvz.org/pipermail/criu/2015-April/019585.html'>several</a> <a href='http://lists.openvz.org/pipermail/criu/2015-March/019299.html'>mailing list</a> <a href='http://lists.openvz.org/pipermail/criu/2015-April/019652.html'>threads</a> about ongoing work with respect to shared mounts in CRIU and I expect something to be merged that will resolve the situation shortly, but for now your host machine needs to be a non-systemd host (i.e. trusty or utopic will work just fine, but not vivid).</p>
+<p>You'll need to install the daily versions of liblxc and lxd from their respective PPAs on each host:</p>
+<pre><code>sudo apt-add-repository -y ppa:ubuntu-lxc/daily
+sudo apt-add-repository -y ppa:ubuntu-lxc/lxd-git-master
+sudo apt-get update
+sudo apt-get install lxd</code></pre>
+<p>Also, you'll need to uninstall <code>lxcfs</code> on both hosts:</p>
+<pre><code>sudo apt-get remove lxcfs</code></pre>
+<p><code>liblxc</code> currently doesn't support migrating the mount configuration that lxcfs uses, although there is <a href='http://lists.openvz.org/pipermail/criu/2015-March/019530.html'>some work</a> on that as well. The overmounting issue has been fixed in lxcfs, so I expect to land some patches in liblxc soon that will make lxcfs work.</p>
+<p>Next, you'll want to set a password for your new lxd instance:</p>
+<pre><code>lxc config set password foo</code></pre>
+<p>You need some images in <code>lxd</code>, which can be acquired easily enough by lxd-images (of course, this only needs to be done on the source host of the migration):</p>
+<pre><code>lxd-images import lxc ubuntu trusty amd64 --alias ubuntu</code></pre>
+<p>You'll also need to set a few configuration items in lxd. First, the container needs to be privileged, although there is <a href='http://lists.openvz.org/pipermail/criu/2015-February/018934.html'>yet more</a> ongoing work to remove this restriction. There are also a few things that CRIU does not support, so we need to set our container config to respect those as well. You can do all of this using lxd's profiles mechanism, that is:</p>
+<pre><code>lxc config profile create migratable
+lxc config profile edit migratable</code></pre>
+<p>And paste the following content in instead of what's there:</p>
+<pre><code>name: migratable
+config:
+  raw.lxc: |
+    lxc.console = none
+    lxc.cgroup.devices.deny = c 5:1 rwm
+    lxc.start.auto =
+    lxc.start.auto = proc:mixed sys:mixed
+  security.privileged: "true"
+devices:
+  eth0:
+    nictype: bridged
+    parent: lxcbr0
+    type: nic</code></pre>
+<p>Finally, launch your contianer:</p>
+<pre><code>lxc launch ubuntu migratee -p migratable</code></pre>
+<p>Finally, add both of your LXDs as non unix-socket remotes (<a href='https://github.com/lxc/lxd/blob/master/lxc/copy.go#L79'>required</a> for now, but not forever):</p>
+<pre><code>lxc remote add lxd thishost:8443   # don't use localhost here
+lxc remote add lxd2 otherhost:8443 # use a publicly addressable name</code></pre>
+<p>Profiles used by a particular container need to be present on both the source of the migration and the sink, so we should copy the profile to the sink as well:</p>
+<pre><code>lxc config profile copy migratable lxd2:</code></pre>
+<p>And now, you're ready for the magic!</p>
+<pre><code>lxc start migratee
+lxc move lxd:migratee lxd2:migratee</code></pre>
+<p>With luck, you'll have migrated the container to <code>lxd2</code>. Of course, things don't always go right the first time. The full log file for the migration attempts should be available in <code>/var/log/lxd/migratee/migration_{dump|restore}_&lt;timestamp&gt;.log</code>, on the respective host where the dump or restore took place. If you aren't successful in migrating things (or parsing the dump/restore log), feel free to mail <a href='https://lists.linuxcontainers.org/listinfo/lxc-users'>lxc-users</a>, and I can help you debug what went wrong.</p>
+<p>Happy hacking!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/lxd.html' class='tag'>lxd, </a><a href='/tags/criu.html' class='tag'>criu, </a><a href='/tags/migration.html' class='tag'>migration, </a><a href='/tags/containers.html' class='tag'>containers</a></span>
+       •   <a href='/blog/2015/04/lxd-live-migration.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>lxd and Doom migration demo</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-11-10</span></small>
+  </p>
+  <div class='content'><p>Last week at the Openstack Developer Summit I gave a live demo of <a href='https://www.youtube.com/watch?v=a9T2gcnQg2k&t=1189'>migrating a linux container running doom</a>, which generated quite a lot of excitement! Several people asked me for steps on reproducing the demo, which I have <a href='https://github.com/tych0/presentations/blob/master/ods2014.md'>just posted</a>.</p>
+<p>I am one of Canonical's developers working on lxd, and I will be focused on bringing migration and other features into it. I'm very excited about the opportunity to work on this project! Stay tuned!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/lxd.html' class='tag'>lxd, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/doom.html' class='tag'>doom, </a><a href='/tags/migration.html' class='tag'>migration</a></span>
+       •   <a href='/blog/2014/11/lxd.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Live Migration of Linux Containers</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-10-08</span></small>
+  </p>
+  <div class='content'><p>Recently, I've been playing around with <a href='http://criu.org'>checkpoint and restore</a> of <a href='http://linuxcontainers.org'>Linux containers</a>. One of the obvious applications is checkpointing on one host and restoring on another (i.e. live migration). Live migration has all sorts of interesting applications, so it is nice to know that at least a proof of concept of it works today.</p>
+<p>Anyway, onto the interesting bits! The first thing I did was create two vms, and install criu's and lxc's development versions on both hosts:</p>
+<pre><code>sudo add-apt-repository ppa:ubuntu-lxc/daily
+sudo apt-get update
+sudo apt-get install lxc
+
+sudo apt-get install build-essential protobuf-c-compiler
+git clone https://github.com/xemul/criu && cd criu && sudo make install</code></pre>
+<p>Then, I created a container:</p>
+<pre><code>sudo lxc-create -t ubuntu -n u1 -- -r trusty -a amd64</code></pre>
+<p>Since the work on container checkpoint/restore is so young, not all container configurations are supported. In particular, I had to add the following to my config:</p>
+<pre><code>cat &lt;&lt; EOF | sudo tee -a /var/lib/lxc/u1/config
+# hax for criu
+lxc.console = none
+lxc.tty = 0
+lxc.cgroup.devices.deny = c 5:1 rwm
+EOF</code></pre>
+<p>Finally, although the lxc-checkpoint tool allows us to checkpoint and restore containers, there is no support for migration directly today. There are several tools in the works for this, but for now we can just use a cheesy shell script:</p>
+<pre><code>cat &gt; migrate &lt;&lt;EOF
+#!/bin/sh
+set -e
+
+usage() {
+  echo $0 container user@host.to.migrate.to
+  exit 1
+}
+
+if [ "$(id -u)" != "0" ]; then
+  echo "ERROR: Must run as root."
+  usage
+fi
+
+if [ "$#" != "2" ]; then
+  echo "Bad number of args."
+  usage
+fi
+
+name=$1
+host=$2
+
+checkpoint_dir=/tmp/checkpoint
+
+do_rsync() {
+  rsync -aAXHltzh --progress --numeric-ids --devices --rsync-path="sudo rsync" $1 $host:$1
+}
+
+# we assume the same lxcpath on both hosts, that is bad.
+LXCPATH=$(lxc-config lxc.lxcpath)
+
+lxc-checkpoint -n $name -D $checkpoint_dir -s -v
+
+do_rsync $LXCPATH/$name/
+do_rsync $checkpoint_dir/
+
+ssh $host "sudo lxc-checkpoint -r -n $name -D $checkpoint_dir -v"
+ssh $host "sudo lxc-wait -n u1 -s RUNNING"
+EOF
+chmod +x migrate</code></pre>
+<p>Now, for the magic show! I've set up the container I created above to be a web server running micro-httpd that serves an incredibly important message:</p>
+<pre><code>$ ssh ubuntu@$(sudo lxc-info -n u1 -H -i)
+ubuntu@u1:~$ sudo apt-get install micro-httpd
+ubuntu@u1:~$ echo "Meshuggah is the best metal band." | sudo tee /var/www/index.html
+ubuntu@u1:~$ exit
+$ curl -s $(sudo lxc-info -n u1 -H -i)
+Meshuggah is the best metal band.</code></pre>
+<p>Let's migrate!</p>
+<pre><code>$ sudo ./migrate u1 ubuntu@criu2.local
+  # lots of rsync output...
+$ ssh ubuntu@criu2.local 'curl -s $(sudo lxc-info -n u1 -H -i)'
+Meshuggah is the best metal band.</code></pre>
+<p>Of course, there are several caveats to this. You've got to add the lines above to your config, which means you can't dump containers with ttys. Since containers have the hosts's fusectl bind mounted and fuse mounts aren't supported by criu, containers or hosts using fuse can't be dumped. You can't migrate unprivileged containers yet. There are probably others that I'm forgetting, though list of troubleshoting steps is available at <a href='http://criu.org/LXC#Troubleshooting'>criu.org/LXC#Troubleshooting</a>.</p>
+<p>There is ongoing work in both CRIU and LXC to get rid of all the caveats above, so stay tuned!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/migration.html' class='tag'>migration, </a><a href='/tags/lxc.html' class='tag'>lxc, </a><a href='/tags/criu.html' class='tag'>criu</a></span>
+       •   <a href='/blog/2014/09/container-migration.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>A Tiling Window Manger</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div>
+<div class='page well'>
+  <h2 class='title'>A Tiling Window Manger</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2011-05-27</span></small>
+  </p>
+  <div class='content'><p>Ahoy! At the recommendation of one of my friends, I've recently begun using a tiling window manger. Although he recommended <a href='http://xmonad.org'>xmonad</a>, I decided to instead to go with a different project, <a href='http://qtile.org'>qtile</a>. I got myself a <a href='http://github.com/tych0'>github</a> account, since that is the primary avenue for qtile development. This means you can run the same WM code as I do :-). (I also posted the code for the framework that powers this blog, something I've been meaning to do for a while but have not gotten around to.)</p>
+<p>I wrote a widget for displaying the currently playing track from your favorite player which implements <a href='http://xmms2.org/wiki/MPRIS'>MPRIS</a>, and I would be interested in any feedback other qtile users have, so feel free to send me or qtile-dev e-mail if you play with it! The widget can be found in both my fork of qtile and in the main fork. It depends on python-dbus, things like Ubuntu's update-manager do too, so it's probably installed for most users. To use it, you can simply put</p>
+<pre><code>widget.Mpris(objname='org.mpris.awesome_mpris_player')</code></pre>
+<p>in your qtile <code>config.py</code>. <code>objname</code> should be whatever the name of your MPRIS player is. You can figure out what this is by running <code>dbus-notify</code> and starting your player, and see what name it requests when it issues <code>RequestName</code>. For example, Clementine's is <code>org.mpris.clementine</code> (and is also the default).</p>
+<p>Happy hacking!</p></div>
+  <div class='meta'>
+      <p class='links'>
+      Please e-mail comments to tycho@ this domain.
+      <span class='tags'> Tags: <a href='/tags/wm.html' class='tag'>wm, </a><a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python</a></span>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

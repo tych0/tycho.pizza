@@ -1,0 +1,277 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2010</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Rendering your current Clementine track in Conky</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-10-23</span></small>
+  </p>
+  <div class='content'><p>I've been using <a href='http://www.clementine-player.org/'>Clementine</a> as a replacement for Amarok for the last few months (it's fairly feature complete, and you don't have to have all of KDE loaded into memory, so it is actually fast). As I also use Conky, it's only natural to want the currently playing track to be rendered in Conky. This isn't too hard, since Clementine exposes this information via dbus. You can see code to do this below:</p>
+<pre><code>#!/bin/bash
+TRACK=`qdbus org.mpris.clementine /TrackList \
+org.freedesktop.MediaPlayer.GetCurrentTrack`
+qdbus org.mpris.clementine /TrackList \
+org.freedesktop.MediaPlayer.GetMetadata $TRACK \
+| sort -r | egrep "^(title:|artist:)" | sed -e "s/^.*: //g" \
+| sed -e ':a;N;$!ba;s/\n/ - /g' | head -c 36</code></pre>
+<p>I put this in a script called <code>nowplaying</code>, and when run, it gives me output in <code>Track name - Artist</code> format. I cut off the output after 36 characters because that's about the size of my Conky window, and songs with longer names will cause Conky to automatically resize its window, which I think is distracting. You can chop the last bit off if you don't want this. Also, although I generally prefer <code>Artist - Track Name</code> notation, I can usually tell who the artist is, so I listed the track name first in case the combination was over my 36 character limit. You can switch it back to <code>Artist - Track name</code> by removing the <code>-r</code> flag from the sort command above.</p>
+<p>Now, to get this information into Conky, add a line to your <code>~/.conkyrc</code> that looks something like this:</p>
+<pre><code>Now playing: ${execi 10 ~/config/bin/nowplaying}</code></pre>
+<p>Every 10 seconds, this will ping Clementine and ask it what is playing. If nothing is playing (or clementine is not running), this will simply render the empty string.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/conky.html' class='tag'>conky, </a><a href='/tags/clementine.html' class='tag'>clementine, </a><a href='/tags/script.html' class='tag'>script</a></span>
+       •   <a href='/blog/2010/10/conky-clementine.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Bug in GTFO</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-09-12</span></small>
+  </p>
+  <div class='content'><p>Uh oh! If you've been browsing this site for the last few days, you've probably noticed some strange behavior. For some reason I'm getting a lot more hits than I was when I originally designed the framework, and it revealed a bug (a <a href='http://en.wikipedia.org/wiki/Race_condition'>race condition</a>, if you're interested). Or at least, I think that was the bug. I'm not totally convinced that's what it was, but that's my educated guess.</p>
+<p>Anyway, I believe I've fixed the bug, and all should be happy now. Life is busy, busy, busy now that classes have started. I'm planning to do a century ride at the end of September, though, so I need to find time to keep riding :-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gtfo.html' class='tag'>gtfo, </a><a href='/tags/bug.html' class='tag'>bug, </a><a href='/tags/meta.html' class='tag'>meta</a></span>
+       •   <a href='/blog/2010/09/race.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>The UK</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-15</span></small>
+  </p>
+  <div class='content'><p>Recently (July 9-23), I spent some time in the UK. I've been a bit busy since then, and have not had time to write up my activities and post them. Anyway, I've got some time now, so I'm posting now :-). The primary reason I went to the UK was for the <a href='http://floc-conference.org'>FLoC '10</a> conference (which was held in Edinburgh, Scotland), where I had a paper in <a href='http://en.wikipedia.org/wiki/Computer_Aided_Verification'>CAV</a>. There is more info (including the paper) on my <a href='http://pages.cs.wisc.edu/~tycho/'>school home page</a>.</p>
+<p>We spent a few days wandering around London, which is quite the tourist trap. I went and saw <a href='http://en.wikipedia.org/wiki/Abbey_Road_%28album%29'>Abbey Road</a> and walked across the zebra crossing, we went and saw the Eye and Tower of London, we saw the Sherlock Holmes museum, we went to Greenwich to sand on the prime meridian, and Windsor Castle. The world cup final (Spain vs. Holland) occurred, and we watched it in an English pub. Naturally, there were many other visits to pubs too... I had to get the full experience, you know ;-).</p>
+<p>After London, we went to Edinburgh for the conference. We didn't do much sight seeing while the conference was in session, but we did eat quite a lot of food, including <a href='http://en.wikipedia.org/wiki/Haggis'>haggis</a> at the fancy conference dinner where we got to here a bagpiper recite the <a href='http://en.wikisource.org/wiki/Address_to_a_Haggis'>Address to a Haggis</a> before our meal.</p>
+<p>After the conference, we spent a day touring Glasgow, a day touring Edinburgh, and a day touring the Scottish country side (including a boat ride across Loch Ness, but no Nessie sighting). It was a fun trip!</p>
+<p>Aditya and I took lots and lots of <a href='http://images.tycho.ws/uk'>photos</a>, so enjoy! I stitched some panoramas together, and some of them turned out pretty good. Note that there are no thumbnails because the images are <em>huge</em>, and the thumbnail generation program crashes on them. You'll just have to download them (but do it on a computer with lots of RAM, as the images are ~25 MB each). Enjoy!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/travel.html' class='tag'>travel, </a><a href='/tags/photos.html' class='tag'>photos, </a><a href='/tags/panorama.html' class='tag'>panorama</a></span>
+       •   <a href='/blog/2010/08/uk.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Primus sucks!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-09</span></small>
+  </p>
+  <div class='content'><p>Last night I went to my first (but hopefully not last!) <a href='http://en.wikipedia.org/wiki/Primus_%28band%29'>Primus</a> show. The show itself was fantastic, Les Claypool is a fantastically weird and equally awesome bassist. I learned that Les is writing a new album with Primus to be released in 2011, which is awesome (there's a Meshuggah album due out then too, it's going to be a great year for music).</p>
+<p>For those who are curious about the title: Primus' slogan is "Primus Sucks". It came to be when everyone kept commenting on how incredibly talented Les (and indeed, all the band members were): "hey, you're really good!". Eventually, Les started responding with "No, we suck", and their slogan was born. So, if you're a true Primus fan, you say "Hey man, Primus sucks!". It was chanted during the encore at the show last night.</p>
+<p>Anyway, I get to cross another band off of my list. Woohoo!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/music.html' class='tag'>music, </a><a href='/tags/primus.html' class='tag'>primus</a></span>
+       •   <a href='/blog/2010/08/primus.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Gmail, Conky, and libnotify</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-01</span></small>
+  </p>
+  <div class='content'><p>Several years ago I discovered a fantastic system monitor named <a href='http://conky.sourceforge.net'>conky</a>. Over the years I've been tweaking my .conkyrc and it has really evolved into a little command center all on it's own. However, I read my e-mail through a mutt, and thus to check it I have to open mutt and look and see if I have any new mail. This is often obnoxious, because I'll either forget to check and miss something until later, or I'll check a lot and not get any e-mail. Today it occurred to me "hey, computers are good at repetitive tasks!", so I decided to automatically check my e-mail and render the results in conky. I also have heard lots of noise about libnotify, and how wonderful it is, so I decided to use that as well. The result is a script which checks a user's Gmail (using a password stored in a keyring), updates conky, and shows a libnotify notification if necessary. It also supports querying of arbitrary Gmail labels, allowing you to display unread counts for other e-mail addresses you might possibly have mapped to your Gmail account.</p>
+<p>You can get your own <a href='http://files.tycho.ws/code/gmail_notifier/gmail_unread.py'>copy</a> to play around with if you like. It's fairly well documented, but I'll answer any questions anyone has. The dependencies (at least on Ubuntu) are <code>python-notify python-keyring</code> and your favorite of: <code>python-keyring-gnome</code> or <code>python-keyring-kwallet</code>.</p>
+<p>I've released it under a <a href='http://en.wikipedia.org/wiki/Beerware'>beerware</a> style license, in hopes that someone, somewhere, might find it useful. Feedback is appreciated!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gmail.html' class='tag'>gmail, </a><a href='/tags/conky.html' class='tag'>conky, </a><a href='/tags/libnotify.html' class='tag'>libnotify, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2010/08/gmail-notify.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Gmail Atom Feed Authentication</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-03</span></small>
+  </p>
+  <div class='content'><p>Perhaps the most complicated part of the application in my <a href='http://tycho.ws/blog/2010/08/gmail-notify'>recent post</a> was the authentication with Gmail. Although my final method boils down to only a few lines of python, Google describes <a href='http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html'>several</a> <a href='http://code.google.com/apis/accounts/docs/OAuthForInstalledApps.html'>different</a> <a href='http://code.google.com/apis/accounts/docs/OpenID.html'>ways</a> to authenticate (additionally, putting the username and password directly in the URL). I didn't like any of these options, as some seemed much too complicated for what I wanted to do, some didn't work, and some were too insecure. However, it turns out that the atom feed supports HTTP's <a href='http://en.wikipedia.org/wiki/Basic_access_authentication#Example'>basic access authentication</a>. In python, this is fairly easy to do:</p>
+<pre><code>$ python
+&gt;&gt;&gt; import urllib2, base64
+&gt;&gt;&gt; username = "me@gmail.com"; password = "secret"
+&gt;&gt;&gt; url = "https://mail.google.com/mail/feed/atom/"
+&gt;&gt;&gt; req = urllib2.Request(url)
+&gt;&gt;&gt; authstr = base64.encodestring("%s:%s" % (username, password))[:-1]
+&gt;&gt;&gt; req.add_header("Authorization", "Basic " + authstr)
+&gt;&gt;&gt; urllib2.urlopen(req).read()</code></pre>
+<p>Note that the above also works for Google apps users you just have to stick "/a/example.com" in the appropriate spot in the URL. Hopefully this will help out someone else who is hopelessly bashing Google's servers with failed login attempts ;-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gmail.html' class='tag'>gmail, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2010/08/gmail-auth.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>The Tour de France!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-07-03</span></small>
+  </p>
+  <div class='content'><p>The Tour de France started today! As I write this the prologue is going on (although none of the big names have gone yet, so we don't know who will lead tomorrow). Google is offering team HTC-Columbia's stats realtime in the tour via an API, so I may play around with that a bit (or at least collect the data... I've never looked at pro riders' stats before).</p>
+<p>They also have a good <a href='http://sites.pressatgoogle.com/realtimetour/home/power-101'>explanation of power</a>, and why it's an interesting metric. I really have no concept of what my power:weight ratio is (I've never ridden a bike with a trustable power meter), but it would be interesting to see what my power:weight was versus a pro. Some day when I'm rich I'll get a power meter :-)</p>
+<p>Anyway, it's going to be an interesting tour. Will Vino ride for Contador? Will Basso win? Can Lance's monster of a team get a W? Who knows, but it'll be fun to watch over the next few weeks :)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/cycling.html' class='tag'>cycling, </a><a href='/tags/tour.html' class='tag'>tour</a></span>
+       •   <a href='/blog/2010/07/tourdefrance.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>The spam continues</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-07-26</span></small>
+  </p>
+  <div class='content'><p>Unfortunately, the spam on my blog appears to have continued. Thus, I've implemented an anti-spam procedure in GTFO: the dreaded <a href='http://en.wikipedia.org/wiki/CAPTCHA'>CAPTCHA</a>. In the spirit of the framework, though, I've tried to make it pretty easy... all it requires is that you type the word 'orange' in to the form. This wouldn't be enough to fool human attackers, but I believe there's a number of years left in AI/NLP research before my blog will start being spammed again ;-). Sorry for the inconvenience, but I don't like logging in every morning to delete the spam.</p>
+<p>In other news, I'm back from the UK. Lots of photos were taken (both by me and by others), and I'm sure I'll have those up soon.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gtfo.html' class='tag'>gtfo, </a><a href='/tags/meta.html' class='tag'>meta, </a><a href='/tags/spam.html' class='tag'>spam</a></span>
+       •   <a href='/blog/2010/07/captcha.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Non-POD to variadic functions</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-18</span></small>
+  </p>
+  <div class='content'><p>Recently I ran into some strange behavior in gcc that caused some minor confusion for me for a few hours until I figured out exactly what was wrong. I'm going to attempt to explain it here, so that maybe someone else will benefit from my lack of understanding about how computers work :-). The problem was exacerbated by the fact that I am compiling a system which has literally <em>thousands</em> of compiler warnings, and without going through and fixing them, there's really no way to manually read them. Since gcc only warns (although I really think this should be an error), this is a miss-able thing that <em>will</em> cause problems if it is ignored. Our working example will be the following code:</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+class Foo
+{
+  public:
+    Foo() {}
+};
+
+int main()
+{
+  printf("%s\n", Foo());
+  return 0;
+}</code></pre>
+<p>First, some background. C++ has things which C compilers (and libraries) don't understand, and one of them happens to be non-POD. POD stands for Plain Old Data, and it is basically things without constructors, destructors and methods (in the above example, <code>Foo</code> serves this purpose). <code>printf()</code> is what's known as a variadic function (i.e. a function which can take a variable number of arguments). In C, these functions are written using the <code>stdargs.h</code> header and associated macros. Naturally, the macros in <code>stdargs.h</code> know nothing about non-POD, and thus it is not valid to pass non-POD to a variadic function. What gcc does when you do, though, is rather strange. Consider the following terminal output:</p>
+<pre><code>tycho@mittens:~/playground$ g++ variadic.cpp -o variadic
+variadic.cpp: In function 'int main()':
+variadic.cpp:11: warning: cannot pass objects of non-POD type
+'class Foo' through '...'; call will abort at runtime
+variadic.cpp:11: warning: format '%s' expects type 'char*', but
+argument 2 has type 'int'
+tycho@mittens:~/playground$ ./variadic 
+Illegal instruction</code></pre>
+<p>What's going on here? My first thought was that it was some 32/64-bit nuance that I didn't understand but it turns out that isn't the case. When gcc encounters a variadic function which has been passed non-POD, it generates a warning and a <code>ud2</code> instruction in place of the call. If (like me) you're forced to ignore all compiler warnings due to the sheer number, you wouldn't see the above warning. Then when you run your binary, it crashes with SIGILL! Why does it crash? From the Intel x86 manual:</p>
+<blockquote>
+<p>[ud2] Generates an invalid opcode. This instruction is provided for software testing to explicitly generate an invalid opcode. The opcode for this instruction is reserved for this purpose. Other than raising the invalid opcode exception, this instruction is the same as the NOP instruction. This instruction's operation is the same in non-64-bit modes and 64-bit mode.</p>
+</blockquote>
+<p>So, the generated binary has a <code>ud2</code> sitting in it, which guarantees that it will crash with a SIGILL. Why does gcc do this instead of aborting compilation? I have no idea, but it's good to know that this behavior exists so that if you come across it you don't have to spend several hours hunting down what's going on.</p>
+<p>Lastly, I'd like to make a plug for <a href='http://www.hex-rays.com/idapro/'>IDAPro</a>. I have used it fairly extensively while at UW, and it works very well. It handles large (300MB) binaries well (things are naturally slower, but it's not unbearable), and models the re-writing of static and dynamic linkers for a variety of formats very well. I used it to help me track down this bug.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gcc.html' class='tag'>gcc, </a><a href='/tags/cpp.html' class='tag'>cpp</a></span>
+       •   <a href='/blog/2010/06/variadic.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Spam on my blog!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-28</span></small>
+  </p>
+  <div class='content'><p>In an interesting twist, you may have noticed that my blog received some spam posts the other day. This seems pretty amazing to me, since I wrote this page myself, and there is exactly one deployment of it (which is here). I can see writing spam bots for popular frameworks like Wordpress, Joomla, Drupal, etc. but this isn't exactly a popular framework ;-). The fact that I got spammed leads me to believe that spammers are applying some sort of machine learning techniques to figure out what looks like a comment form, and what doesn't. It never ceases to amaze me the lengths people will go to in order to spam.</p>
+<p>How did I remove it? Well naturally I've been too lazy to code an admin interface (and why would I? I write the blog posts in vi). So, I had to fire up the sqlite driver (I use a database to store the comments) and manually delete them myself. If this keeps occurring, I'll probably try to build in some sort of simple spam filtering AI or at least an interface which makes it easy to delete the spam.</p>
+<p>Either way, I'm flattered that people think my website is popular enough that they <em>have</em> to post their spam links on it ;-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/spam.html' class='tag'>spam, </a><a href='/tags/meta.html' class='tag'>meta</a></span>
+       •   <a href='/blog/2010/06/spam.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>First post to the blog!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-02</span></small>
+  </p>
+  <div class='content'><p>This my first post using the blog mechanism of the GTFO. Hopefully everything will work as advertised ;-).</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/meta.html' class='tag'>meta, </a><a href='/tags/gtfo.html' class='tag'>gtfo</a></span>
+       •   <a href='/blog/2010/06/fp.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Dane County Farmer's Market</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-19</span></small>
+  </p>
+  <div class='content'><p>One of the things I like best about living in downtown Madison is the <a href='http://www.dcfm.org/'>farmer's market</a>. It's very handy to be able to up, walk a few blocks and get stuff for breakfast, and come home and cook it. If you're ever in town, I highly recommend dropping by! They have all kinds of things there including a multitude of Wisconsin cheese :-).</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/madison.html' class='tag'>madison, </a><a href='/tags/food.html' class='tag'>food</a></span>
+       •   <a href='/blog/2010/06/farmersmarket.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>First public deployment of GTFO!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-15</span></small>
+  </p>
+  <div class='content'><p>Ahoy! This is the first public deployment of the new web framework "GTFO". I'll explain the name, design rationale, and other such things in a later post (suffice it to say that this is the framework which stays the hell out of your way ;-). For now, I believe I've got a reasonable stable and secure (i.e. protected against sql/html injection) version of it.</p>
+<p>Of course with a new framework comes a new content format. This means I had to port all of my content from my old web page to this one. Although most of it was pretty scriptable, I've scrapped a few old and unnecessary pages in favor of the new format. In the process, I likely broke a few things that I'm unaware of. Thus, if you experience any broken links (or get any unexpected errors) /please/ send me an e-mail to let me know, so that I can fix them.</p>
+<p>I'm also interested in folks' thoughts on the new layout. I'm experimenting with a few different layouts, and any thoughts would be welcome. I enjoy the simplicity of this one, but I don't like the fact that it is a fixed width. Anyway, I'll probably try a few more layouts before I settle on the right one, so don't be surprised if you show up and everything looks totally different. There should be more new content soon too (where soon is as soon as I can get the energy up to write it ;-).</p>
+<p>Lastly, I hope to have more features (e.g. photo galleries) integrated into the framework. I'm developing it pretty actively right now, so it's likely that these things will happen in the near future. Please don't hesitate to suggest any features that you might enjoy using. I'm eventually going to release the code under a BSD-style (or perhaps beerware?) license, although it's not clean enough for me to do that right now. If you're interested in trying out the code, though, shoot me an e-mail and I'll be happy to send it your way.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/meta.html' class='tag'>meta, </a><a href='/tags/gtfo.html' class='tag'>gtfo</a></span>
+       •   <a href='/blog/2010/06/deploy.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Cycling in Madison</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-16</span></small>
+  </p>
+  <div class='content'><p>Now that I have this fancy blog, I might as well use it :-).</p>
+<p>For my birthday I was given a fancy bike computer (Garmin Edge 705, if you're interested). I take it on all of my rides, and record them. I publish the results on <a href='http://www.runsaturday.com/people/tycho'>runsaturday.com</a>, which is a pretty cool page for managing things like this. If you're interested in fitness at all, this site has a plethora of tools which will automatically analyze your fitness for you. It's very interesting!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/cycling.html' class='tag'>cycling, </a><a href='/tags/madison.html' class='tag'>madison, </a><a href='/tags/cool websites.html' class='tag'>cool websites</a></span>
+       •   <a href='/blog/2010/06/cycling.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Panoramic off of the capitol</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-06-21</span></small>
+  </p>
+  <div class='content'><p>This weekend I went up to the observatory deck on the capitol, which was the first time I'd ever done that. I shot a panoramic with the camera on my phone. It's not a great camera, but the results turned out pretty well for a camera phone. If you're interested you can check out the <a href='http://files.tycho.ws/cap_pano.png'>original</a> and a <a href='http://files.tycho.ws/cap_pano_cropped.png'>cropped version</a> (warning: these images are <em>huge</em> -- around 25 MB -- and will probably take a while to load). Enjoy!</p>
+<p>Oh, and the software I used to stitch together the photos was <a href='http://hugin.sourceforge.net'>hugin</a>. Not exactly an intuitive interface, but it works pretty well, and it has more buttons and whistles than I could ever want. If you know something about photo stitching that I don't (which is highly likely), I'm happy to furnish the originals for a better attempt.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/madison.html' class='tag'>madison, </a><a href='/tags/panorama.html' class='tag'>panorama</a></span>
+       •   <a href='/blog/2010/06/cappano.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

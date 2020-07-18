@@ -1,0 +1,95 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Home of Tycho Andersen on the Internets</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>The UK</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-15</span></small>
+  </p>
+  <div class='content'><p>Recently (July 9-23), I spent some time in the UK. I've been a bit busy since then, and have not had time to write up my activities and post them. Anyway, I've got some time now, so I'm posting now :-). The primary reason I went to the UK was for the <a href='http://floc-conference.org'>FLoC '10</a> conference (which was held in Edinburgh, Scotland), where I had a paper in <a href='http://en.wikipedia.org/wiki/Computer_Aided_Verification'>CAV</a>. There is more info (including the paper) on my <a href='http://pages.cs.wisc.edu/~tycho/'>school home page</a>.</p>
+<p>We spent a few days wandering around London, which is quite the tourist trap. I went and saw <a href='http://en.wikipedia.org/wiki/Abbey_Road_%28album%29'>Abbey Road</a> and walked across the zebra crossing, we went and saw the Eye and Tower of London, we saw the Sherlock Holmes museum, we went to Greenwich to sand on the prime meridian, and Windsor Castle. The world cup final (Spain vs. Holland) occurred, and we watched it in an English pub. Naturally, there were many other visits to pubs too... I had to get the full experience, you know ;-).</p>
+<p>After London, we went to Edinburgh for the conference. We didn't do much sight seeing while the conference was in session, but we did eat quite a lot of food, including <a href='http://en.wikipedia.org/wiki/Haggis'>haggis</a> at the fancy conference dinner where we got to here a bagpiper recite the <a href='http://en.wikisource.org/wiki/Address_to_a_Haggis'>Address to a Haggis</a> before our meal.</p>
+<p>After the conference, we spent a day touring Glasgow, a day touring Edinburgh, and a day touring the Scottish country side (including a boat ride across Loch Ness, but no Nessie sighting). It was a fun trip!</p>
+<p>Aditya and I took lots and lots of <a href='http://images.tycho.ws/uk'>photos</a>, so enjoy! I stitched some panoramas together, and some of them turned out pretty good. Note that there are no thumbnails because the images are <em>huge</em>, and the thumbnail generation program crashes on them. You'll just have to download them (but do it on a computer with lots of RAM, as the images are ~25 MB each). Enjoy!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/travel.html' class='tag'>travel, </a><a href='/tags/photos.html' class='tag'>photos, </a><a href='/tags/panorama.html' class='tag'>panorama</a></span>
+       •   <a href='/blog/2010/08/uk.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Primus sucks!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-09</span></small>
+  </p>
+  <div class='content'><p>Last night I went to my first (but hopefully not last!) <a href='http://en.wikipedia.org/wiki/Primus_%28band%29'>Primus</a> show. The show itself was fantastic, Les Claypool is a fantastically weird and equally awesome bassist. I learned that Les is writing a new album with Primus to be released in 2011, which is awesome (there's a Meshuggah album due out then too, it's going to be a great year for music).</p>
+<p>For those who are curious about the title: Primus' slogan is "Primus Sucks". It came to be when everyone kept commenting on how incredibly talented Les (and indeed, all the band members were): "hey, you're really good!". Eventually, Les started responding with "No, we suck", and their slogan was born. So, if you're a true Primus fan, you say "Hey man, Primus sucks!". It was chanted during the encore at the show last night.</p>
+<p>Anyway, I get to cross another band off of my list. Woohoo!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/music.html' class='tag'>music, </a><a href='/tags/primus.html' class='tag'>primus</a></span>
+       •   <a href='/blog/2010/08/primus.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Gmail, Conky, and libnotify</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-01</span></small>
+  </p>
+  <div class='content'><p>Several years ago I discovered a fantastic system monitor named <a href='http://conky.sourceforge.net'>conky</a>. Over the years I've been tweaking my .conkyrc and it has really evolved into a little command center all on it's own. However, I read my e-mail through a mutt, and thus to check it I have to open mutt and look and see if I have any new mail. This is often obnoxious, because I'll either forget to check and miss something until later, or I'll check a lot and not get any e-mail. Today it occurred to me "hey, computers are good at repetitive tasks!", so I decided to automatically check my e-mail and render the results in conky. I also have heard lots of noise about libnotify, and how wonderful it is, so I decided to use that as well. The result is a script which checks a user's Gmail (using a password stored in a keyring), updates conky, and shows a libnotify notification if necessary. It also supports querying of arbitrary Gmail labels, allowing you to display unread counts for other e-mail addresses you might possibly have mapped to your Gmail account.</p>
+<p>You can get your own <a href='http://files.tycho.ws/code/gmail_notifier/gmail_unread.py'>copy</a> to play around with if you like. It's fairly well documented, but I'll answer any questions anyone has. The dependencies (at least on Ubuntu) are <code>python-notify python-keyring</code> and your favorite of: <code>python-keyring-gnome</code> or <code>python-keyring-kwallet</code>.</p>
+<p>I've released it under a <a href='http://en.wikipedia.org/wiki/Beerware'>beerware</a> style license, in hopes that someone, somewhere, might find it useful. Feedback is appreciated!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gmail.html' class='tag'>gmail, </a><a href='/tags/conky.html' class='tag'>conky, </a><a href='/tags/libnotify.html' class='tag'>libnotify, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2010/08/gmail-notify.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Gmail Atom Feed Authentication</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-08-03</span></small>
+  </p>
+  <div class='content'><p>Perhaps the most complicated part of the application in my <a href='http://tycho.ws/blog/2010/08/gmail-notify'>recent post</a> was the authentication with Gmail. Although my final method boils down to only a few lines of python, Google describes <a href='http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html'>several</a> <a href='http://code.google.com/apis/accounts/docs/OAuthForInstalledApps.html'>different</a> <a href='http://code.google.com/apis/accounts/docs/OpenID.html'>ways</a> to authenticate (additionally, putting the username and password directly in the URL). I didn't like any of these options, as some seemed much too complicated for what I wanted to do, some didn't work, and some were too insecure. However, it turns out that the atom feed supports HTTP's <a href='http://en.wikipedia.org/wiki/Basic_access_authentication#Example'>basic access authentication</a>. In python, this is fairly easy to do:</p>
+<pre><code>$ python
+&gt;&gt;&gt; import urllib2, base64
+&gt;&gt;&gt; username = "me@gmail.com"; password = "secret"
+&gt;&gt;&gt; url = "https://mail.google.com/mail/feed/atom/"
+&gt;&gt;&gt; req = urllib2.Request(url)
+&gt;&gt;&gt; authstr = base64.encodestring("%s:%s" % (username, password))[:-1]
+&gt;&gt;&gt; req.add_header("Authorization", "Basic " + authstr)
+&gt;&gt;&gt; urllib2.urlopen(req).read()</code></pre>
+<p>Note that the above also works for Google apps users you just have to stick "/a/example.com" in the appropriate spot in the URL. Hopefully this will help out someone else who is hopelessly bashing Google's servers with failed login attempts ;-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/gmail.html' class='tag'>gmail, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2010/08/gmail-auth.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

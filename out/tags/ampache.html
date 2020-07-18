@@ -1,0 +1,73 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Tagged: ampache</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Viridian/Ampache local control</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-01-23</span></small>
+  </p>
+  <div class='content'><p>Recently at work I've been using <a href='http://www.daveeddy.com/projects/launchpad/viridian-ampache-front-end/'>Viridan</a> to listen to music at work. It has its warts, but generally works pretty well. There's even an XMLRPC server built in, so you can control it remotely. However, there's not a huge number of clients out there, so I wrote my own little script so that I could start and stop it from a Qtile keybinding, and I thought I'd <a href='blog/2012/01/vif.py'>put it up</a> here for anyone else who is interested. Here's an example session:</p>
+<pre><code>smitten:~$ ./vif.py 
+./vif.py [rpc_call(s)]
+   availible methods are:
+     get_current_song
+     get_state
+     get_volume
+     next
+     play_pause
+     prev
+     set_volume
+     volume_down
+     volume_up
+smitten:~$ ./vif.py get_current_song
+{'artist_name': 'Meshuggah','song_title': 'Stengah', ...}
+smitten:~$ ./vif.py next
+True</code></pre>
+<p>Hopefully someone else finds it useful :-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/ampache.html' class='tag'>ampache</a></span>
+       •   <a href='/blog/2012/01/vif.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Python "binding" for Ampache</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2011-12-19</span></small>
+  </p>
+  <div class='content'><p>Ahoy!</p>
+<p>Just writing a quick post to pimp my new <a href='http://ampache.org/'>Ampache</a> "bindings", which are called <a href='https://github.com/tych0/ampyche'>ampyche</a>, naturally ;-). I slapped them together one afternoon mostly to get an understanding of the Ampache API, so that's why I used my native language. I have no specific plans for any python applications using them, but I'm interested in improving the stability of Android-based Ampache clients, as well as adding support for Ampache to Clementine, so I thought this would be a good place to start.</p>
+<p>In any case, I hope someone finds them useful! Happy hacking!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/python.html' class='tag'>python, </a><a href='/tags/ampache.html' class='tag'>ampache, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2011/12/ampyche.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

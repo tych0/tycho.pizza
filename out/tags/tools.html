@@ -1,0 +1,54 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Tagged: tools</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>pw, a stateless password generation tool</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2017-12-16</span></small>
+  </p>
+  <div class='content'><p>Ahoy! Recently, I have been working on a new stateless password generation tool, primarily to learn the language rust. The idea was to build replacement for <a href='https://github.com/tych0/password'>password</a>, which, while I use daily, could use a few extra features.</p>
+<p>While I could elaborate on <code>pw</code>'s features, I think it's best to just copy the text from <code>pw</code>'s readme:</p>
+<p><code>pw</code> uses <code>pbkdf2</code> with <code>sha512</code> to stretch your password, with the supplied entity as the salt. The result is encoded in base58, meaning that each symbol in the password has ~5.86 of entropy. By default, pw generates passwords of length 20, so there are ~117 bits of entropy per (default) password. By comparison, <a href='https://xkcd.com/936/'>"correct horse battery staple"</a> is only 44.</p>
+<h4>Password Rotation</h4>
+<p>Changing passwords, memorably. <code>pw</code> offers several features for changing the generated password for a given salt and user secret combination. For example, some organizations require users to change their password every 90 days. This is security theater, but nonetheless, users must cooperate. Using a standard password generator, users could append a "2" and a "3" ("4"...) to their password ad infinitum; the problem with this is that it makes some part of the plaintext input known. <code>pw</code> uses a novel method of changing the number of iterations for <code>pbkdf2</code> based on such inputs. <code>--otp</code> can be directly used to change the number of iterations and thus the generated password. <code>--period</code> and <code>--date</code> can be used together to work around organizations who e.g. require you to change your password every 90 days. <code>--period</code> alone calculates the password based on the current date, while <code>--date</code> allows you to pass an arbitrary date for which to calculate password.</p>
+<h4>Adding Special Characters</h4>
+<p>By default the base58 encoding includes only alphanumeric characters. Some organizations require special characters in their passwords. Users can add arbitrary special characters by supplying an argument to <code>--special</code>. By default, <code>--special</code> includes 25 typically allowed special characters.</p>
+<h4>Salt Recommendations</h4>
+<p>The salt is of particular importance to generated passwords. A typical suggestion is to use the domain of the entity that the password is for, but the problem is that an attacker who steals usbank.com's password database may just generate a rainbow table for usbank.com. So, some personalized version of the salt is recommended. For example, I might choose tycho.usbank.com. An additional feature (discussed in TODO) would be a global offset for the algorithm, so people could choose e.g. to not use the default offset of 0, but something else for all of their passwords.</p>
+<h4>Usage</h4>
+<p><code>pw</code> has support for storing a password in the OS native keyring, via <code>--{get,set,delete}-keyring-password</code>, so that users don't have to type in their password each invocation.</p>
+<p>There is also X11 clipboard support on Linux via <code>xclip</code>, so users can pass <code>--clipboard</code> to pw, and it will automatically copy the generated password to the clipboard.</p>
+<p>Finally, worth noting is that <code>pw</code> has support for a configuration file, allowing for a few other features, which can be configured via <code>--{get,set,edit,delete}-keyring-config</code>. For example, users can store OTP offsets, special character sets, or even pre-shared key material (config key <code>preshared</code>, a string) to use for generating particular passwords. Currently this config file must be stored in the keyring, so it is not exposed to unencrypted access. Of course, this is not stateless, and pw can function entirely without this configuration, but it may be useful to some.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/passwords.html' class='tag'>passwords, </a><a href='/tags/tools.html' class='tag'>tools, </a><a href='/tags/rust.html' class='tag'>rust</a></span>
+       •   <a href='/blog/2017/pw.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

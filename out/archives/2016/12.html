@@ -1,0 +1,60 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2016 - 12</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Mounting your home directory in LXD</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2016-12-07</span></small>
+  </p>
+  <div class='content'><p>As of LXD stable 2.0.8 and feature release 2.6, LXD has support for various UID and GID map related manipulaions. A common question is: "How do I bind-mount my home directory into a container?" and before the answer was "well, it's complicated but you can do it; it's slightly less complicated if you do it in privleged containers". However, with this feature, now you can do it very easily in unprivileged containers.</p>
+<p>First, find out your uid on the host:</p>
+<pre><code>$ id
+uid=1000(tycho) gid=1000(tycho) groups=1000(tycho),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),112(lpadmin),124(sambashare),129(libvirtd),149(lxd),150(sbuild)</code></pre>
+<p>On standard Ubuntu hosts, the uid of the first user is 1000. Now, we need to allow LXD to remap this id; you'll need an additional entry for root to do this:</p>
+<pre><code>$ echo 'root:1000:1' | sudo tee -a /etc/subuid /etc/subgid</code></pre>
+<p>Now, create a container, and set the idmap up to map both uid and gid 1000 to uid and gid 1000 inside the container.</p>
+<pre><code>$ lxc init ubuntu-daily:z zesty
+Creating zesty
+$ lxc config set zesty raw.idmap 'both 1000 1000'</code></pre>
+<p>Finally, set up your home directory to be mounted in the container:</p>
+<pre><code>$ lxc config device add zesty homedir disk source=/home/tycho path=/home/ubuntu</code></pre>
+<p>And leave an insightful message for users of the container:</p>
+<pre><code>$ echo 'meshuggah rocks' &gt;&gt; message</code></pre>
+<p>Finally, start your container and read the message:</p>
+<pre><code>$ lxc start zesty
+$ lxc exec zesty cat /home/ubuntu/message
+meshuggah rocks</code></pre>
+<p>And enjoy the insighed offered to you by your home directory :)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/lxd.html' class='tag'>lxd</a></span>
+       •   <a href='/blog/2016/12/uidmap.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

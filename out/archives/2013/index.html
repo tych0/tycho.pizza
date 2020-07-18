@@ -1,0 +1,116 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2013</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Ubuntu 13.10 Saucy Salamander packages for Qtile</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-09-07</span></small>
+  </p>
+  <div class='content'><p>Just posting to let everyone know that I've published packages for the latest Qtile release on Ubuntu 13.10. See the <a href='https://groups.google.com/forum/#!topic/qtile-dev/UwO46FJe3T8'>mailing list announcement</a> for more details.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/ubuntu.html' class='tag'>ubuntu</a></span>
+       •   <a href='/blog/2013/09/qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Manage passwords without state</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-09-06</span></small>
+  </p>
+  <div class='content'><p>A few years ago I had a problem: I had a bunch of accounts that I accessed once a year when tax time came around, and I kept forgetting the passwords. Often I'd try a few before locking myself out, and then I'd have to spend an hour on the phone with customer service getting my account unlocked, which meant if I was doing my taxes on the last weekend possible, I wouldn't be able to complete them until the next business day. The obvious solution to this problem is to store the passwords in some kind of password manager -- lots of them exist for all kinds of platforms: phone, computer, browser, etc.</p>
+<p>The problem with password manager is that they typically require some kind of state file. They store the mapping between site and cleartext password in some file, and then they decrypt it with some secret from you when you want to access it. Thus, you have to 1. trust the person who is doing the encrypting and decrypting that they are doing it correctly so that when your laptop gets stolen your passwords aren't leaked, and 2. you have to have <em>access</em> to the machine that the passwords are stored on when you want to use them. If you've left your laptop at home or you forgot to back up your password file when you got a new computer, you're SOL.</p>
+<p>What's the solution? A password manager without state, of course! Since we're assuming the user can remember at least one pretty good password, we can use that as our "state", so we end up with the algorithm as follows:</p>
+<pre><code>hash = sha512(user_secret + "example.org")
+base64encode(hash)[:10]</code></pre>
+<p>Here, we're using the domain to salt the user secret so the generated passwords are different for each site. <code>sha512</code> provides randomness, although we are only using the first 60 bits of the output here (10 base64 characters, each character encodes six bits of entropy), there are significantly more bits of entropy here than in your typical English character, making it a much stronger password. Further, the algorithm is very simple, and you could re-implement it on any computer that has your favorite programming language environment available. Thus, you can use it in a pinch, since all you need to remember are the algorithm and your <code>user_secret</code>. I've <a href='https://github.com/tych0/password'>published</a> a python script that implements this mechanism, so you don't even have to remember the algorithm</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/password.html' class='tag'>password, </a><a href='/tags/security.html' class='tag'>security, </a><a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2013/09/password.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Weechat with an alternative timezone</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-06-25</span></small>
+  </p>
+  <div class='content'><p>A common usecase (and one I was interested in) for weechat is to run it on a VPS in screen, so that you don't lose your IRC session when you turn off your computer. This all works well and good, except that all the timestamps for the messages will be in the server's local time, instead of your time. If you dig through the code, though, you find that weechat uses the <code>strftime()</code> call, which respects the TZ environment variable. So, if your server is in a different time zone than you are, you can start weechat by:</p>
+<pre><code>TZ='US/Central' weechat-curses</code></pre>
+<p>and all the timestamps it displays will be in <code>US/Central</code> time.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/weechat.html' class='tag'>weechat, </a><a href='/tags/irc.html' class='tag'>irc, </a><a href='/tags/utilities.html' class='tag'>utilities</a></span>
+       •   <a href='/blog/2013/06/weechat.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Qtile 0.6 released!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-05-11</span></small>
+  </p>
+  <div class='content'><p>I have just tagged and released qtile 0.6! This release comes exactly 6 months after our last release (not intentionally, it just happened to work out that way). You can check out the <a href='http://docs.qtile.org/en/latest/releases/0.6.html'>full release notes</a> for a list of most of the changes.</p>
+<p>I thought I'd discuss a bit about the breaking config changes we made. A few of them were long standing TODOs in the code, but the major one (and the one that motivated cleaning up all the rest) was creating a new config module where all of the objects used in configuration live. The primary motivation for this change was to remove a lot of crazy hacks we had in the test system to get around circular imports, since the configuration objects and main manager were all in the same file. However, it also makes sense from a code organization standpoint, because manager.py was getting huge. I think user impact will be minimal, because configs can be updated with a simple regex. That said, I will only be updating the Ubuntu 13.04 packages, so as not to break configs for existing users on older packages with a simple dselect-upgrade.</p>
+<p>As always, questions or comments are welcome on <a href='https://groups.google.com/forum/?fromgroups#!forum/qtile-dev'>qtile-dev</a>!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+       •   <a href='/blog/2013/05/qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Haggis, a static site generator</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-03-14</span></small>
+  </p>
+  <div class='content'><p>Woah! tycho.ws looks totally different. Recently, I switched from using my old custom blogging framework to a new static site generator that I wrote called <a href='http://hackage.haskell.org/package/haggis'>haggis</a>. Both <a href='https://github.com/tych0/haggis'>haggis</a> and the source code for <a href='https://github.com/tych0/tycho.ws'>this blog</a> are available, so you can check them out and perhaps build your own haggis-based blog if you want.</p>
+<p>I did haggis as a static site generator mostly because I could. There's no inherent reason for blogs to re-compute their pages on every request, especially when there are very few comments on the blog (I think I've got around 70 comments right now across all my posts). The comments support I wrote for this blog is in fact totally separate from haggis -- the templates have a form which does an AJAX post to a small script which basically dumps the result in a database (after sanatizing it, of course :-). Haggis needs to know nothing about the "dynamic" nature of the site. Then, the script simply re-invokes haggis, which regenerates the whole blog.</p>
+<p>Now, if all of the sudden I write a super popular post, my blog (probably?) won't go down: the page is statically generated, so all the web server has to do is read it off the disk and dump it on to the wire. No sessions, no computation, no nothing. I'm using apache because I'm lazy and it's what I know how to set up, but if I really wanted to, I could use some other more performant web server for static files, thus increasing my capacity even more.</p>
+<p>What happens, though, if lots of people start commenting all the time? Then I spawn off N processes, which could confuse the web server if they're all over-writing the files all the time. So, instead I check whether to re-generate the blog once a minute, and only do it if necessary (i.e. if there is a new comment). With this setup, hopefully I can handle a reasonably large load with very few resources. And, of course, I can edit my posts in vim using markdown, and manage the blog in git which were all requirements as well.</p>
+<p>So, haggis probably performs much better than a GTFO-based (or any other dynamic framework based) blog does, but why not just turn GTFO into a static site generator? Well, the other reason for haggis is that I've been interested in learning haskell for a while, and this was a perfect first project. Anyway, haggis should be reasonably stable at this point, although there's still lots of work left. Please report any bugs on the github page!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/haskell.html' class='tag'>haskell, </a><a href='/tags/haggis.html' class='tag'>haggis, </a><a href='/tags/hquery.html' class='tag'>hquery</a></span>
+       •   <a href='/blog/2013/03/haggis.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Hquery, an HTML5 tree rewriting tool</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-01-29</span></small>
+  </p>
+  <div class='content'><p>Recently I began rewriting the framework that powers this blog (<a href='https://github.com/tych0/gtfo'>gtfo</a>) in haskell. Among other things, I needed a good tree rewriting utility for processing templates and generating content. I've been using <a href='http://liftweb.net/'>Lift</a> at work for a while now, so I built hquery, which is basically an implementation of Lift's <a href='http://simply.liftweb.net/index-7.10.html'>CSS Selectors</a> over <a href='http://hackage.haskell.org/package/xmlhtml'>xmlhtml</a> trees. You can see some examples of the kind of transformations it allows in <a href='https://github.com/tych0/hquery#examples'>hquery's readme</a>. Additionally, it is available from <a href='http://hackage.haskell.org/package/hquery'>hackage</a> via <code>cabal install hquery</code>.</p>
+<p>Feedback is welcome, as this is my first haskell API. Bug reports and patches are of course welcome too :-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/haskell.html' class='tag'>haskell, </a><a href='/tags/html.html' class='tag'>html</a></span>
+       •   <a href='/blog/2013/01/hquery.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

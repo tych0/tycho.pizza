@@ -1,0 +1,48 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2017 - 3</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Just how expensive is slub_deug=p?</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2017-03-31</span></small>
+  </p>
+  <div class='content'><p>Recently, I became interested in a debugging option in the Linux kernel</p>
+<h3>slub_debug=p</h3>
+<p>``` Average Half load -j 2 Run (std deviation): Elapsed Time 44.586 (1.67125) User Time 73.874 (2.51294) System Time 7.756 (0.741741) Percent CPU 182.4 (0.547723) Context Switches 13880.8 (157.161) Sleeps 15745.2 (24.3146)</p>
+<p>Average Optimal load -j 4 Run (std deviation): Elapsed Time 32.702 (0.400087) User Time 89.22 (16.3062) System Time 8.945 (1.37014) Percent CPU 266.4 (88.5729) Context Switches 15701 (1929.57) Sleeps 15722.2 (78.1875) ```</p>
+<h3>without slub_debug=p</h3>
+<p>``` Average Half load -j 2 Run (std deviation): Elapsed Time 40.614 (0.232873) User Time 69.978 (0.503061) System Time 5.09 (0.182209) Percent CPU 184.4 (0.547723) Context Switches 13596 (121.501) Sleeps 15740.4 (46.4629)</p>
+<p>Average Optimal load -j 4 Run (std deviation): Elapsed Time 30.622 (0.171523) User Time 86.233 (17.1381) System Time 5.874 (0.853557) Percent CPU 270.1 (90.3431) Context Switches 15370.3 (1875.97) Sleeps 15777.4 (74.43) ```</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/kernel.html' class='tag'>kernel, </a><a href='/tags/security.html' class='tag'>security</a></span>
+       •   <a href='/blog/2017/slub_debug.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

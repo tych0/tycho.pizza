@@ -1,0 +1,125 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Home of Tycho Andersen on the Internets</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Qtile's crazy 0.9.0 changes have landed</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-09-13</span></small>
+  </p>
+  <div class='content'><p>We have re-written a lot of the underlying code that powers qtile, in order to support python2/3, pypi, as well as getting rid of several memory leaks. This work is now done and on the development branch, see the <a href='https://groups.google.com/forum/#!topic/qtile-dev/vHsY8l8ya2A'>mailing list announcement</a> for more info.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python</a></span>
+       •   <a href='/blog/2014/09/qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Live Migration of Linux Containers</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2014-10-08</span></small>
+  </p>
+  <div class='content'><p>Recently, I've been playing around with <a href='http://criu.org'>checkpoint and restore</a> of <a href='http://linuxcontainers.org'>Linux containers</a>. One of the obvious applications is checkpointing on one host and restoring on another (i.e. live migration). Live migration has all sorts of interesting applications, so it is nice to know that at least a proof of concept of it works today.</p>
+<p>Anyway, onto the interesting bits! The first thing I did was create two vms, and install criu's and lxc's development versions on both hosts:</p>
+<pre><code>sudo add-apt-repository ppa:ubuntu-lxc/daily
+sudo apt-get update
+sudo apt-get install lxc
+
+sudo apt-get install build-essential protobuf-c-compiler
+git clone https://github.com/xemul/criu && cd criu && sudo make install</code></pre>
+<p>Then, I created a container:</p>
+<pre><code>sudo lxc-create -t ubuntu -n u1 -- -r trusty -a amd64</code></pre>
+<p>Since the work on container checkpoint/restore is so young, not all container configurations are supported. In particular, I had to add the following to my config:</p>
+<pre><code>cat &lt;&lt; EOF | sudo tee -a /var/lib/lxc/u1/config
+# hax for criu
+lxc.console = none
+lxc.tty = 0
+lxc.cgroup.devices.deny = c 5:1 rwm
+EOF</code></pre>
+<p>Finally, although the lxc-checkpoint tool allows us to checkpoint and restore containers, there is no support for migration directly today. There are several tools in the works for this, but for now we can just use a cheesy shell script:</p>
+<pre><code>cat &gt; migrate &lt;&lt;EOF
+#!/bin/sh
+set -e
+
+usage() {
+  echo $0 container user@host.to.migrate.to
+  exit 1
+}
+
+if [ "$(id -u)" != "0" ]; then
+  echo "ERROR: Must run as root."
+  usage
+fi
+
+if [ "$#" != "2" ]; then
+  echo "Bad number of args."
+  usage
+fi
+
+name=$1
+host=$2
+
+checkpoint_dir=/tmp/checkpoint
+
+do_rsync() {
+  rsync -aAXHltzh --progress --numeric-ids --devices --rsync-path="sudo rsync" $1 $host:$1
+}
+
+# we assume the same lxcpath on both hosts, that is bad.
+LXCPATH=$(lxc-config lxc.lxcpath)
+
+lxc-checkpoint -n $name -D $checkpoint_dir -s -v
+
+do_rsync $LXCPATH/$name/
+do_rsync $checkpoint_dir/
+
+ssh $host "sudo lxc-checkpoint -r -n $name -D $checkpoint_dir -v"
+ssh $host "sudo lxc-wait -n u1 -s RUNNING"
+EOF
+chmod +x migrate</code></pre>
+<p>Now, for the magic show! I've set up the container I created above to be a web server running micro-httpd that serves an incredibly important message:</p>
+<pre><code>$ ssh ubuntu@$(sudo lxc-info -n u1 -H -i)
+ubuntu@u1:~$ sudo apt-get install micro-httpd
+ubuntu@u1:~$ echo "Meshuggah is the best metal band." | sudo tee /var/www/index.html
+ubuntu@u1:~$ exit
+$ curl -s $(sudo lxc-info -n u1 -H -i)
+Meshuggah is the best metal band.</code></pre>
+<p>Let's migrate!</p>
+<pre><code>$ sudo ./migrate u1 ubuntu@criu2.local
+  # lots of rsync output...
+$ ssh ubuntu@criu2.local 'curl -s $(sudo lxc-info -n u1 -H -i)'
+Meshuggah is the best metal band.</code></pre>
+<p>Of course, there are several caveats to this. You've got to add the lines above to your config, which means you can't dump containers with ttys. Since containers have the hosts's fusectl bind mounted and fuse mounts aren't supported by criu, containers or hosts using fuse can't be dumped. You can't migrate unprivileged containers yet. There are probably others that I'm forgetting, though list of troubleshoting steps is available at <a href='http://criu.org/LXC#Troubleshooting'>criu.org/LXC#Troubleshooting</a>.</p>
+<p>There is ongoing work in both CRIU and LXC to get rid of all the caveats above, so stay tuned!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/linux.html' class='tag'>linux, </a><a href='/tags/containers.html' class='tag'>containers, </a><a href='/tags/migration.html' class='tag'>migration, </a><a href='/tags/lxc.html' class='tag'>lxc, </a><a href='/tags/criu.html' class='tag'>criu</a></span>
+       •   <a href='/blog/2014/09/container-migration.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

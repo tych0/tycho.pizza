@@ -1,0 +1,162 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2012</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Qtile 0.5 released!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-11-11</span></small>
+  </p>
+  <div class='content'><p>Hello! Today, I'm proud to announce the release of <a href='https://github.com/qtile/qtile/commit/dd52b52fb8713b5b983c1a034a67bfc6fa269573'>Qtile 0.5</a>. A wildly incomplete changelog is available <a href='http://docs.qtile.org/en/latest/releases/0.5.html'>here</a>. Qtile 0.5 comes more than two years after the release of 0.4. There have been many major improvements and bugfixes by nearly 50 contributors. Many thanks to everyone who was involved, and long live tiling window managers!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/qtile.html' class='tag'>qtile</a></span>
+       •   <a href='/blog/2012/11/qtile05.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Qtile 0.5 packages for 12.10</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-11-12</span></small>
+  </p>
+  <div class='content'><p>Ahoy! I've updated the packages in my Ubuntu 12.10 PPA to be version 0.5. Please let qtile-dev know if you have any problems!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/ppa.html' class='tag'>ppa, </a><a href='/tags/ubuntu.html' class='tag'>ubuntu</a></span>
+       •   <a href='/blog/2012/11/qtile05-packages.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Qtile packages for Ubuntu 12.10 (Quantal Quetzal)</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-10-19</span></small>
+  </p>
+  <div class='content'><p>Ahoy! I have put up new packages for qtile for 12.10, so I thought I'd write a bit about what's actually in the packages. First, they're available via the standard:</p>
+<pre><code>sudo apt-add-repository ppa:tycho-s/ppa
+sudo apt-get update
+sudo apt-get install qtile</code></pre>
+<p>A few things to note about these packages. First: they now install a qtile.desktop file, so any compliant freedesktop.org login manager should see qtile as a login option. Note that this just invokes qtile directly with no arguments, so you'll have to put your configs in the standard location. If you want to run a custom <code>.xsession</code>, you'll still need to set that up yourself.</p>
+<p>Second, these packages no longer depend on xpyb-ng, but depend on xpyb (1.3.1) directly. I did this for a few reasons. I've had several users report that 1.3.1 works directly for them (i.e. xpyb-ng is not actually required to run qtile). If there is no problem with using the stock implementation, I felt like we should switch to that. Naturally, if problems come up and we need to move back to our fork, I'm happy to rebuild, however, I think that's unlikely.</p>
+<p>Third, which hash are these packages based on? They're based on <a href='https://github.com/qtile/qtile/commit/87dc6924cbeab92f2b48b05623e0de53efd68400'>87dc6924cb</a>, which is on the development branch. I've been running this code both at home and at work for several months now, as well as several other people. While there are still several bugs (patches welcome!), I feel that it's much more stable and user friendly than the master branch.</p>
+<p>Fourth, based on some statistics that Launchpad provides, it looks like there were about 100 installs of the Ubuntu PPA. One or two of those were probably my test VMs, but that means there were a fair number of other people who checked qtile out. Very cool!</p>
+<p>Feel free to e-mail me or <a href='http://groups.google.com/group/qtile-dev'>qtile-dev</a> with any feedback! (Unfortunately, I've been inadvertently banned from qtile-dev somehow. Still waiting on a resolution to that, so if you find a bug with the packages, go ahead and just file it on the github tracker and I'll fix it ASAP.)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/ppa.html' class='tag'>ppa, </a><a href='/tags/ubuntu.html' class='tag'>ubuntu</a></span>
+       •   <a href='/blog/2012/10/qtile-packages.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Qtile packages for Ubuntu 11.10 (Oneiric Ocelot)</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-02-26</span></small>
+  </p>
+  <div class='content'><p>By not-so-popular demand (:-), I have built some packages for qtile and its dependencies for 11.10. You can now install my branch of qtile via:</p>
+<pre><code>sudo apt-add-repository ppa:tycho-s/ppa
+sudo apt-get update
+sudo apt-get install qtile</code></pre>
+<p>Feel free to e-mail me or <a href='http://groups.google.com/group/qtile-dev'>qtile-dev</a> with any feedback!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/ppa.html' class='tag'>ppa</a></span>
+       •   <a href='/blog/2012/02/qtile-packages.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Viridian/Ampache local control</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-01-23</span></small>
+  </p>
+  <div class='content'><p>Recently at work I've been using <a href='http://www.daveeddy.com/projects/launchpad/viridian-ampache-front-end/'>Viridan</a> to listen to music at work. It has its warts, but generally works pretty well. There's even an XMLRPC server built in, so you can control it remotely. However, there's not a huge number of clients out there, so I wrote my own little script so that I could start and stop it from a Qtile keybinding, and I thought I'd <a href='blog/2012/01/vif.py'>put it up</a> here for anyone else who is interested. Here's an example session:</p>
+<pre><code>smitten:~$ ./vif.py 
+./vif.py [rpc_call(s)]
+   availible methods are:
+     get_current_song
+     get_state
+     get_volume
+     next
+     play_pause
+     prev
+     set_volume
+     volume_down
+     volume_up
+smitten:~$ ./vif.py get_current_song
+{'artist_name': 'Meshuggah','song_title': 'Stengah', ...}
+smitten:~$ ./vif.py next
+True</code></pre>
+<p>Hopefully someone else finds it useful :-)</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/ampache.html' class='tag'>ampache</a></span>
+       •   <a href='/blog/2012/01/vif.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Photos from my Colorado adventure</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-01-11</span></small>
+  </p>
+  <div class='content'><p>Hello! I just completed another successful two and a half weeks touring the Colorado mountains. Although the snow was not great (Winter Park only has around a 15 inch base, and over half the mountain was closed), I still had a good time! Rather than do a lot of aggressive skiing (the conditions would have made aggressive skiing fairly dangerous), I tried a bunch of new things instead! The most interesting new thing was probably the <a href='http://www.ski-bike.org/faq.html'>ski bike</a>, and I am now a licensed snow cyclist! My dad and I both took lots of pictures, and he's posted both the ones from <a href='http://dave.tycho.ws/PEHut12/'>his camera</a> and <a href='http://dave.tycho.ws/PEHut12T/'>my camera</a> on his web page.</p>
+<p>I did three summits during the trip, two of Mt. Charles which is roughly 12,050 feet, and one of Mt. Prospect which is roughly 11,700 feet. I took a panorama (which I've yet to stitch together) of the view on Mt. Prospect, and my dad took one of Mt. Charles, so eventually when we get those stitched together, I'll post them as well. Anyway, if you're heading out west, here's to hoping you have more snow than we did! Even though the backcountry was bare in spots, we still had a lot of fun goofing around (you might notice some defilement of a USGS marker in the photos ;-).</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/colorado.html' class='tag'>colorado, </a><a href='/tags/skiing.html' class='tag'>skiing, </a><a href='/tags/photos.html' class='tag'>photos</a></span>
+       •   <a href='/blog/2012/01/skiing.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div><div class='page well'>
+  <h2 class='title'>Installing Qtile on Ubuntu 11.10 (Oneiric Ocelot)</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2012-01-26</span></small>
+  </p>
+  <div class='content'><p>Recently, there has been some discussion on <a href='http://groups.google.com/group/qtile-dev'>qtile-dev</a> about installing the latest and greatest version of qtile. Unfortunately, the install process has historically been a journey into dependency hell, since distributions didn't have the latest versions of some libraries required by qtile. The good news is that this has mostly been fixed (although very few documents anywhere state this), so it's hard to know what to install by hand and what you can use packages for.</p>
+<p>To complicate matters more, there are several versions of xpyb floating around, none of which have working build systems! If you knew enough about pkg-config and weren't afraid of manually installing files, you could get everything to work, but it did bar the "normal user" from installing qtile. Hopefully this blog post will clarify a few things.</p>
+<p>First, what dependencies do you need to install? Contrary to what the docs say, in 11.10 (and presumably later versions of Ubuntu), you don't need to build your own cairo or xcb. You can simply:</p>
+<pre><code>sudo apt-get install xcb-proto libxcb1-dev python-xcbgen
+libcairo2-dev</code></pre>
+<p>You will have to build three things by hand: <code>xpyb</code>, <code>py2cairo</code>, and <code>qtile</code> itself. The other day I sat down and fixed the build system for <code>xpyb</code>, so you should be able to just:</p>
+<pre><code>git clone git://github.com/tych0/xpyb-ng.git
+cd xpyb-ng
+sudo python setup.py install</code></pre>
+<p>After that, you'll need to install <code>py2cairo</code>. The <code>waf</code> based build doesn't appear to detect xpyb correctly, so you'll need to go the autoconf route. Even with autoconf, the build system is slightly broken, so you'll need to be explicit about what directories to look in for <code>xpyb.h</code>. If you used the above build of xpyb, you can:</p>
+<pre><code>git clone git://git.cairographics.org/git/py2cairo
+cd py2cairo
+CFLAGS=-I/usr/local/include/python2.7/xpyb ./configure
+sudo make install</code></pre>
+<p>Then, you can clone your favorite qtile repo and everything should Just Work! If you want to clone my copy of qtile (which includes several bug fixes and enhancements):</p>
+<pre><code>git clone https://github.com/tych0/qtile
+cd qtile
+sudo python setup.py install</code></pre>
+<p>If you have any questions or problems, feel free to mail qtile-dev or me directly. I am going to try and package qtile and put it in a PPA, but I doubt I will get to that for another few weeks. This should help anyone who is interested enough to build it in the meantime, though!</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/free code.html' class='tag'>free code, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/qtile.html' class='tag'>qtile</a></span>
+       •   <a href='/blog/2012/01/install-qtile.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

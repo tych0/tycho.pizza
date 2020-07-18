@@ -1,0 +1,53 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2010 - 10</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Rendering your current Clementine track in Conky</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2010-10-23</span></small>
+  </p>
+  <div class='content'><p>I've been using <a href='http://www.clementine-player.org/'>Clementine</a> as a replacement for Amarok for the last few months (it's fairly feature complete, and you don't have to have all of KDE loaded into memory, so it is actually fast). As I also use Conky, it's only natural to want the currently playing track to be rendered in Conky. This isn't too hard, since Clementine exposes this information via dbus. You can see code to do this below:</p>
+<pre><code>#!/bin/bash
+TRACK=`qdbus org.mpris.clementine /TrackList \
+org.freedesktop.MediaPlayer.GetCurrentTrack`
+qdbus org.mpris.clementine /TrackList \
+org.freedesktop.MediaPlayer.GetMetadata $TRACK \
+| sort -r | egrep "^(title:|artist:)" | sed -e "s/^.*: //g" \
+| sed -e ':a;N;$!ba;s/\n/ - /g' | head -c 36</code></pre>
+<p>I put this in a script called <code>nowplaying</code>, and when run, it gives me output in <code>Track name - Artist</code> format. I cut off the output after 36 characters because that's about the size of my Conky window, and songs with longer names will cause Conky to automatically resize its window, which I think is distracting. You can chop the last bit off if you don't want this. Also, although I generally prefer <code>Artist - Track Name</code> notation, I can usually tell who the artist is, so I listed the track name first in case the combination was over my 36 character limit. You can switch it back to <code>Artist - Track name</code> by removing the <code>-r</code> flag from the sort command above.</p>
+<p>Now, to get this information into Conky, add a line to your <code>~/.conkyrc</code> that looks something like this:</p>
+<pre><code>Now playing: ${execi 10 ~/config/bin/nowplaying}</code></pre>
+<p>Every 10 seconds, this will ping Clementine and ask it what is playing. If nothing is playing (or clementine is not running), this will simply render the empty string.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/conky.html' class='tag'>conky, </a><a href='/tags/clementine.html' class='tag'>clementine, </a><a href='/tags/script.html' class='tag'>script</a></span>
+       •   <a href='/blog/2010/10/conky-clementine.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

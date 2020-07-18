@@ -1,0 +1,47 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Qtile 0.6 released!</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div>
+<div class='page well'>
+  <h2 class='title'>Qtile 0.6 released!</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-05-11</span></small>
+  </p>
+  <div class='content'><p>I have just tagged and released qtile 0.6! This release comes exactly 6 months after our last release (not intentionally, it just happened to work out that way). You can check out the <a href='http://docs.qtile.org/en/latest/releases/0.6.html'>full release notes</a> for a list of most of the changes.</p>
+<p>I thought I'd discuss a bit about the breaking config changes we made. A few of them were long standing TODOs in the code, but the major one (and the one that motivated cleaning up all the rest) was creating a new config module where all of the objects used in configuration live. The primary motivation for this change was to remove a lot of crazy hacks we had in the test system to get around circular imports, since the configuration objects and main manager were all in the same file. However, it also makes sense from a code organization standpoint, because manager.py was getting huge. I think user impact will be minimal, because configs can be updated with a simple regex. That said, I will only be updating the Ubuntu 13.04 packages, so as not to break configs for existing users on older packages with a simple dselect-upgrade.</p>
+<p>As always, questions or comments are welcome on <a href='https://groups.google.com/forum/?fromgroups#!forum/qtile-dev'>qtile-dev</a>!</p></div>
+  <div class='meta'>
+      <p class='links'>
+      Please e-mail comments to tycho@ this domain.
+      <span class='tags'> Tags: <a href='/tags/qtile.html' class='tag'>qtile, </a><a href='/tags/python.html' class='tag'>python, </a><a href='/tags/free code.html' class='tag'>free code</a></span>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

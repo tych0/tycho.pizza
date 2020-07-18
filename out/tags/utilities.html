@@ -1,0 +1,44 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Tagged: utilities</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Weechat with an alternative timezone</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2013-06-25</span></small>
+  </p>
+  <div class='content'><p>A common usecase (and one I was interested in) for weechat is to run it on a VPS in screen, so that you don't lose your IRC session when you turn off your computer. This all works well and good, except that all the timestamps for the messages will be in the server's local time, instead of your time. If you dig through the code, though, you find that weechat uses the <code>strftime()</code> call, which respects the TZ environment variable. So, if your server is in a different time zone than you are, you can start weechat by:</p>
+<pre><code>TZ='US/Central' weechat-curses</code></pre>
+<p>and all the timestamps it displays will be in <code>US/Central</code> time.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/weechat.html' class='tag'>weechat, </a><a href='/tags/irc.html' class='tag'>irc, </a><a href='/tags/utilities.html' class='tag'>utilities</a></span>
+       •   <a href='/blog/2013/06/weechat.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>

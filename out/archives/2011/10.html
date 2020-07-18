@@ -1,0 +1,57 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+    <title>Posts from: 2011 - 10</title>
+    <link rel='stylesheet' type='text/css' href='/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='/custom.css' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src='/post.js'></script>
+  </head>
+<body>
+
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li><a href='/'>Blog</a></li>
+          <li><a href='/misc.html'>Miscellany</a></li>
+          <li><a href='/music.html'>Music</a></li>
+        </ul>
+        <ul class='nav' style='float: right;'>
+          <li><a href='/archives'>Archives</a></li>
+          <li><a href='/tags'>Tags</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='content' class='container' style='padding-top: 50px;'><div class='page well'>
+  <h2 class='title'>Mutt Sidebar Configuration</h2>
+  <p class='byline'>
+    <small>Posted by <span class='author'>tycho</span> on <span class='date'>2011-10-26</span></small>
+  </p>
+  <div class='content'><p>I am a <a href='http://www.mutt.org'>mutt</a> user (in fact, I'm a <a href='http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44'>mutt-sidebar</a> user). That means several things, one of which is that I spend a nonzero amount of time configuring my e-mail client to behave as I want it to. I am also a <a href='http://www.vim.org'>vim</a> user, and in the spirit of loving vim, I set out on an adventure to make everything look and feel like vim. A natural thing to want to do is be able to navigate the sidebar (i.e. the folder list) with <code>j</code> and <code>k</code> keys as one does in vim. Reasonable attempts at this fail for various reasons, and I hope this post will explain why and also how to do what you want.</p>
+<p>First, a natural thing to want to do is to bind sidebar navigation to <code>&lt;ctrl&gt;+j</code> and <code>&lt;ctrl&gt;+k</code>, since the <code>&lt;ctrl&gt;</code> binding indicates somehow that the navigation is "slightly different", and therefore is a good mnemonic for a "slightly different" kind of up and down movement. To do this, you could put something like:</p>
+<pre><code>bind index,pager \ck sidebar-prev
+bind index,pager \cj sidebar-next</code></pre>
+<p>at the end of your <code>~/.muttrc</code>. However, this has an unexpected result: moving up and down in the menu works just fine, but now pressing <code>&lt;return&gt;</code> also moves you down in the sidebar, instead of opening the highlighted message (its default) or whatever else you had it set to.</p>
+<p>The problem is that <code>&lt;ctrl&gt;+j</code> and <code>&lt;return&gt;</code> are actually the same character. That is, when you press <code>&lt;ctrl&gt;+j</code> the terminal interprets it and sends an ASCII 10 (the <code>LF</code> character), which is the same thing that <code>&lt;return&gt;</code> sends. In fact <code>&lt;ctrl&gt;+*</code> (where <code>*</code> is any character a-z) is bound to some control code (it's just that most of them are unused in modern applications, e.g. <code>&lt;ctrl&gt;+i</code> is an alias for tab). Unfortunately that means we can't bind <code>&lt;ctrl&gt;+j</code> and <code>&lt;return&gt;</code> to different things in mutt, since they're actually the same character.</p>
+<p>So what's the workaround? Well, I decided that <code>&lt;alt&gt;</code> is just as reasonable as <code>&lt;ctrl&gt;</code>. Running <code>:exec what-key</code> told me that <code>\252</code> (i.e. octal 252) is <code>&lt;alt&gt;+j</code>, so I can add the following lines to <code>~/.muttrc</code>:</p>
+<pre><code>bind index,pager \253 sidebar-prev
+bind index,pager \252 sidebar-next</code></pre>
+<p>but it didn't work! Mutt Well, it might work for some people, depending on their terminal configurations. According to the <a href='http://rute.2038bug.com/node5.html.gz#SECTION00560000000000000000'>Rute User's tutorial and Exposition</a>:</p>
+<blockquote>
+<p>The alt modifier (i.e. Alt-?) is in fact a short way of pressing and releasing Esc before entering the key combination; hence Esc then f is the same as Alt-f--UNIX is different from other operating systems in this use of Esc.</p>
+</blockquote>
+<p>So what's the issue? Well, some terminals do this by default, and some don't. In xterm, the default is not to convert <code>&lt;alt&gt;</code> characters into the escape sequences mutt expects. However, by putting</p>
+<pre><code>xterm*metaSendsEscape: true</code></pre>
+<p>in your <code>~/.Xresources</code> and running <code>xrdb ~/.Xresources</code> and restarting xterm, it /will/ interpret <code>&lt;alt&gt;</code> keypresses correctly, and your <code>&lt;alt&gt;+j</code> keybindings will work.</p></div>
+  <div class='meta'>
+    <p class='links'>
+      <span class='tags'>Tags: <a href='/tags/ncurses.html' class='tag'>ncurses, </a><a href='/tags/mutt.html' class='tag'>mutt</a></span>
+       •   <a href='/blog/2011/10/mutt.html' class='more'>Read full post »</a>
+    </p>
+  </div>
+</div></div>
+</body>
+</html>
