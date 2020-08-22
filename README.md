@@ -1,6 +1,6 @@
-# tycho.ws
+# tycho.pizza
 
-Here is the source code for my web page, [tycho.ws](http://tycho.ws).
+Here is the source code for my web page, [tycho.pizza](http://tycho.pizza).
 
 
 It used to serve as an example of how to use the blog engine
