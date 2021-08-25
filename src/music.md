@@ -97,5 +97,6 @@ In general, these are the bands who are on the "[bucket list][1]", so to speak.
 #. Trampled by Turtles
 #. Veil of Maya (2)
 #. Vulfpeck
+#. ZZ Top
 
  [1]: http://en.wikipedia.org/wiki/Kick_the_bucket
