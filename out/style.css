@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    font-family: monospace;
+    font-size: 14px;
+    justify-content: center;
+}
+div {
+    width: 504px;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background: black;
+        color: white;
+    }
+    a:link {
+        color: lightgreen;
+    }
+    a:visited {
+        color: yellow;
+    }
+}
